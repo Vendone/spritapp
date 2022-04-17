@@ -5,6 +5,7 @@ import { User } from '../../features/User/User';
 import { Dashboard } from '../../features/Dashboard/Dashboard';
 import { AddRoute } from '../../features/AddRoute/AddRoute';
 import { Home } from '../../features/Home/Home';
+import { Cars } from '../../features/Cars/Cars';
 
 export default function App() {
   return (
@@ -14,6 +15,9 @@ export default function App() {
         <Switch>
           <Route path="/user">
             <User />
+          </Route>
+          <Route path='/cars'>
+            <Cars/>
           </Route>
           <Route path="/dashboard">
             <Dashboard />
