@@ -3,7 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 // Slice Object
 const options = {
     name: 'user',
-    initialState: [],
+    initialState: [
+        {
+            id: 1,
+            first_name: 'Andreas',
+            last_name: 'Venturin',
+            email: 'andreasventurin@gmail.com',
+            password: '123456'
+        }
+    ],
     reducers: {
         addUser: (state, action) => {
             state.push(action.payload);

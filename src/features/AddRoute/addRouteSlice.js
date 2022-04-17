@@ -3,7 +3,19 @@ import { createSlice } from "@reduxjs/toolkit";
 // Slice Object
 const options = {
     name: 'routes',
-    initialState: [],
+    initialState: [
+        {
+            id: 1,
+            date: Date.now(),
+            start_point: 'Saalfelden',
+            end_ponit: 'Bischofshofen',
+            mileage_start: 210000,
+            mileage_stop: 210035,
+            avg_fuel_consumption: 3.8,
+            user_id: 1,
+            car_id: 1
+        }
+    ],
     reducers: {
         addRoute: (state, action) => {
             state.push(action.payload);

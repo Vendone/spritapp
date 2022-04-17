@@ -3,7 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 // Slice Object
 const options = {
     name: 'gasstations',
-    initialState: [],
+    initialState: [
+        {
+            id: 1,
+            name: 'Jet',
+            location: 'Bischofshofen'
+        }
+    ],
     reducers: {
         addGasStation: (state, action) => {
             state.push(action.payload);
