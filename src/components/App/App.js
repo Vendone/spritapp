@@ -5,6 +5,9 @@ import { User } from '../../features/User/User';
 import { Dashboard } from '../../features/Dashboard/Dashboard';
 import { AddRoute } from '../../features/AddRoute/AddRoute';
 import { Home } from '../../features/Home/Home';
+import { Cars } from '../../features/Cars/Cars';
+import { GasStations } from '../../features/GasStation/GasStation';
+import { TankStops } from '../../features/TankStops/TankStops';
 
 export default function App() {
   return (
@@ -12,8 +15,17 @@ export default function App() {
       <Router>
         <Nav />
         <Switch>
+          <Route path="/gasstations">
+            <GasStations />
+          </Route>
+          <Route path="/tankstops">
+            <TankStops />
+          </Route>
           <Route path="/user">
             <User />
+          </Route>
+          <Route path='/cars'>
+            <Cars />
           </Route>
           <Route path="/dashboard">
             <Dashboard />

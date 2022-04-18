@@ -9,6 +9,9 @@ export const Nav = () => {
             <NavLink to="/user">User</NavLink>
             <NavLink to="/addRoute">Route hinzufügen</NavLink>
             <NavLink to="/dashboard">Dashboard</NavLink>
+            <NavLink to="/cars">Cars</NavLink>
+            <NavLink to="/gasstations">Gas Station</NavLink>
+            <NavLink to="/tankstops">Tankstops</NavLink>
         </div>
     );
 };
