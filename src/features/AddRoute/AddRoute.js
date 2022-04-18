@@ -1,5 +1,4 @@
 import { useSelector, useDispatch } from "react-redux";
-import './addRoutes.css';
 
 export const AddRoute = () => {
     const store = useSelector((state) => state.routes);
@@ -10,7 +9,7 @@ export const AddRoute = () => {
             <h1>Routes</h1>
             <div>
             {store.map((obj) => 
-            <div className="routes" key={obj.id}>
+            <div className="store" key={obj.id}>
                 <div>
                     <h5>Datum:</h5>
                     <p>{obj.date}</p>
