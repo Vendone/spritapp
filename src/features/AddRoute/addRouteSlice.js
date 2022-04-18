@@ -8,10 +8,21 @@ const options = {
             id: 1,
             date: Date.now(),
             start_point: 'Saalfelden',
-            end_ponit: 'Bischofshofen',
+            end_point: 'Bischofshofen',
             mileage_start: 210000,
             mileage_stop: 210035,
             avg_fuel_consumption: 3.8,
+            user_id: 1,
+            car_id: 1
+        },
+        {
+            id: 2,
+            date: Date.now(),
+            start_point: 'Bischofshofen',
+            end_point: 'Saalfelden',
+            mileage_start: 210035,
+            mileage_stop: 210070,
+            avg_fuel_consumption: 7.6,
             user_id: 1,
             car_id: 1
         }
@@ -25,6 +36,8 @@ const options = {
         }
     }
 }
+
+export const selectAllRoutes = state => state.routes;
 
 export const routeSlice = createSlice(options);
 

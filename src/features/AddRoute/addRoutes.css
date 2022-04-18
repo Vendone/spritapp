@@ -1,0 +1,7 @@
+.routes {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    
+}
