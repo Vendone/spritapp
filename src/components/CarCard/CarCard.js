@@ -2,6 +2,11 @@ import { useSelector } from "react-redux";
 
 export const CarCard = () => {
     const store = useSelector((state) => state.cars);
+
+    const alarm = () => { 
+        alert('Hey wie gehts?');
+    }
+
     return (
         <div className="card">
             <p>Car Card</p>
@@ -33,6 +38,25 @@ export const CarCard = () => {
                     </div>
                 </div>
             ))}
+            <button className="dashbutton" onClick={alarm}>Bearbeiten</button>
         </div>
     );
 }
+/*
+
+reducer schreiben 
+const transactionsSlice = createSlice({
+  name: 'transactions',
+  initialState: initialState,
+  reducers: {
+    addTransaction: (state, action) => {
+      const categoryIndex = state.findIndex(action.payload.category == state.category);
+      state[categoryIndex].push(action.payload);
+    },
+    deleteTransaction: (state, action) => {
+      state[action.payload.category].filter(transaction => transaction.id !== action.payload.id);
+      return state;
+    }
+  }
+});
+*/
