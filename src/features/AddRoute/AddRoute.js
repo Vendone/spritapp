@@ -64,7 +64,7 @@ export const AddRoutes = () => {
         <div>
             <h1>add Routes</h1>
             <div>
-                <form onSubmit={handleSubmit}>
+                <form action="/rute" onSubmit={handleSubmit}>
                     <input type="date" name="date" id="date" value={date} onChange={handleDate} required />
                     <input type="time" name="time" id="time" value={time} onChange={handleTime} required />
                     <input type="text" name="start" id="start" value={start} placeholder="Start" onChange={handleStart} required />
