@@ -1,3 +1,4 @@
+import React from 'react';
 import { useSelector } from "react-redux";
 
 export const CarCard = () => {
@@ -42,21 +43,3 @@ export const CarCard = () => {
         </div>
     );
 }
-/*
-
-reducer schreiben 
-const transactionsSlice = createSlice({
-  name: 'transactions',
-  initialState: initialState,
-  reducers: {
-    addTransaction: (state, action) => {
-      const categoryIndex = state.findIndex(action.payload.category == state.category);
-      state[categoryIndex].push(action.payload);
-    },
-    deleteTransaction: (state, action) => {
-      state[action.payload.category].filter(transaction => transaction.id !== action.payload.id);
-      return state;
-    }
-  }
-});
-*/

@@ -1,3 +1,4 @@
+import React from 'react';
 import { UserCard } from '../../components/UserCard/UserCard';
 import { CarCard } from '../../components/CarCard/CarCard';
 

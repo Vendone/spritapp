@@ -1,9 +1,11 @@
+import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Nav } from '../../features/Nav/Nav';
 import { User } from '../../features/User/User';
 import { Dashboard } from '../../features/Dashboard/Dashboard';
-import { AddRoute } from '../../features/AddRoute/AddRoute';
+import { Rute } from '../../features/Routes/Routes';
+import {AddRoutes} from '../../features/AddRoute/AddRoute';
 import { Home } from '../../features/Home/Home';
 import { Cars } from '../../features/Cars/Cars';
 import { GasStations } from '../../features/GasStation/GasStation';
@@ -30,8 +32,11 @@ export default function App() {
           <Route path="/dashboard">
             <Dashboard />
           </Route>
-          <Route path="/addRoute">
-            <AddRoute />
+          <Route path="/rute">
+            <Rute />
+          </Route>
+          <Route path="/addRoutes">
+            <AddRoutes />
           </Route>
           <Route path="/">
             <Home />
