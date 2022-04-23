@@ -1,12 +1,15 @@
+import React from 'react';
 import { UserCard } from '../../components/UserCard/UserCard';
 import { CarCard } from '../../components/CarCard/CarCard';
 
 export const Dashboard = () => {
     return (
-        <div className='dashboard'>
+        <div>
             <h1>Dashboard</h1>
-            <UserCard />
-            <CarCard />
+            <div className='dashboard'>
+                <UserCard />
+                <CarCard />
+            </div>
         </div>
     );
 };

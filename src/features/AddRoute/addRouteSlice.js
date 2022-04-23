@@ -32,12 +32,10 @@ const options = {
             state.push(action.payload);
         },
         removeRoute: (state, action) => {
-            state.filter(route => route.id !== action.payload.id)
+            state.filter(route => route.id !== action.payload.id);
         }
     }
 }
-
-export const selectAllRoutes = state => state.routes;
 
 export const routeSlice = createSlice(options);
 

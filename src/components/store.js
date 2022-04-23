@@ -5,7 +5,7 @@ import carsSlice from "../features/Cars/carsSlice";
 import tankStopsSlice from "../features/TankStops/tankStopsSlice";
 import gasStationsSlice from "../features/GasStation/gasStationSlice";
 
-export const store = configureStore({
+export default configureStore({
     reducer: {
         user: userSlice,
         routes: routeSlice,

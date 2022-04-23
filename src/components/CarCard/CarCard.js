@@ -1,7 +1,13 @@
+import React from 'react';
 import { useSelector } from "react-redux";
 
 export const CarCard = () => {
     const store = useSelector((state) => state.cars);
+
+    const alarm = () => { 
+        alert('Hey wie gehts?');
+    }
+
     return (
         <div className="card">
             <p>Car Card</p>
@@ -33,6 +39,7 @@ export const CarCard = () => {
                     </div>
                 </div>
             ))}
+            <button className="dashbutton" onClick={alarm}>Bearbeiten</button>
         </div>
     );
 }

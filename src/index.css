@@ -20,13 +20,29 @@ code {
 }
 
 .dashboard {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .card {
-  border: 1px solid #000;
-  border-radius: 5px;
+  padding: 16px 13px 16px 14px;
+  border-radius: 10px;
+  border: solid 1px #141c3a;
+  background-color: none;
+  text-align: left;
   width: 250px;
+  margin: 16px;
+}
+
+.dashbutton {
+  background-color: #4176e6;
+  color:azure;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.dashbutton:hover {
+  cursor: pointer;
+  background-color: #2e53a3;
 }
