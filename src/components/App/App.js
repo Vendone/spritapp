@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route  } from 'react-router-dom';
-import { Nav } from '../../features/Nav/Nav';
-import { User } from '../../features/User/User';
-import { Dashboard } from '../../features/Dashboard/Dashboard';
-import { Rute } from '../../features/Routes/Routes';
-import { AddRoutes } from '../../features/AddRoute/AddRoute';
-import { Home } from '../../features/Home/Home';
-import { Cars } from '../../features/Cars/Cars';
-import { GasStations } from '../../features/GasStation/GasStation';
+import { Nav } from '../Nav/Nav';
+import { User } from '../User/User';
+import { Dashboard } from '../Dashboard/Dashboard';
+import { Rute } from '../Routes/Routes';
+import { AddRoutes } from '../AddRoute/AddRoute';
+import { Home } from '../Home/Home';
+import { Cars } from '../Cars/Cars';
+import { GasStations } from '../GasStation/GasStation';
 import { TankStops } from '../../features/TankStops/TankStops';
 
 export default function App() {
