@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { AddRoutes } from '../AddRoute/AddRoute';
 import { removeRoute } from './routeSlice';
+import { Link } from 'react-router-dom';
 
 export const Rute = () => {
     const store = useSelector((state) => state.routes);
@@ -11,7 +11,7 @@ export const Rute = () => {
         <div>
             <h1>Routes</h1>
             <div>
-                {store.map((obj) =>
+                {(store.length <= 0) ? <p>Keine Einträge vorhanden. Bitte ersten Eintrag hinzufügen</p> : store.map((obj) =>
                     <div className="store" key={obj.id}>
                         <div>
                             <h5>Datum:</h5>
@@ -41,16 +41,18 @@ export const Rute = () => {
                             <h5>Auto:</h5>
                             <p>{obj.car_id}</p>
                         </div>
-                        <div><button className="dashbutton">-</button></div>
+                        <div>
+                            <button className="dashbutton" onClick={() => dispatch(removeRoute(obj))}>-</button>
+                        </div>
                     </div>
                 )
                 }
             </div>
             <div>
                 <div>
-                    <AddRoutes />
+                    <Link to="/addRoute" className="dashbutton">+</Link>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }

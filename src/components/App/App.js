@@ -23,7 +23,7 @@ export default function App() {
           <Route path="/user" element={<User />}/>        
           <Route path='/cars' element={<Cars />}/>           
           <Route path="/dashboard" element={<Dashboard />}/>          
-          <Route path="/addRoutes" element={<AddRoutes />}/>          
+          <Route path="/addRoute" element={<AddRoutes />}/>          
           <Route path="/rute" element={<Rute />}/>           
         </Routes>
       </BrowserRouter>
