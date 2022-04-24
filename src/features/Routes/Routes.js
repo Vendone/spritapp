@@ -1,9 +1,11 @@
 import React from 'react';
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { AddRoutes } from '../AddRoute/AddRoute';
+import { removeRoute } from './routeSlice';
 
 export const Rute = () => {
     const store = useSelector((state) => state.routes);
+    const dispatch = useDispatch();
 
     return (
         <div>
@@ -46,7 +48,7 @@ export const Rute = () => {
             </div>
             <div>
                 <div>
-                    <Link to='/addRoutes'><button className="dashbutton" >+</button></Link>
+                    <AddRoutes />
                 </div>
             </div>
         </div>
