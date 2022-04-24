@@ -4,6 +4,7 @@ import { addRoute } from "../Routes/routeSlice";
 
 export const AddRoutes = () => {
     const cars = useSelector(state => state.cars);
+    const routes = useSelector(state => state.routes);
     const dispatch = useDispatch();
 
     const [date, setDate] = useState('');
@@ -43,7 +44,7 @@ export const AddRoutes = () => {
     };
     const handleClick = () => {
         dispatch(addRoute({
-            id: Math.floor(Math.random() * 1000),
+            id: (routes.length <= 0) ? 0 : routes[routes.length - 1].id + 1,
             date: date,
             start_point: start,
             end_point: end,
