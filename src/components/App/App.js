@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Routes, Route  } from 'react-router-dom';
 import { Nav } from '../../features/Nav/Nav';
 import { User } from '../../features/User/User';
 import { Dashboard } from '../../features/Dashboard/Dashboard';
 import { Rute } from '../../features/Routes/Routes';
-import {AddRoutes} from '../../features/AddRoute/AddRoute';
+import { AddRoutes } from '../../features/AddRoute/AddRoute';
 import { Home } from '../../features/Home/Home';
 import { Cars } from '../../features/Cars/Cars';
 import { GasStations } from '../../features/GasStation/GasStation';
@@ -14,35 +14,19 @@ import { TankStops } from '../../features/TankStops/TankStops';
 export default function App() {
   return (
     <div className="App">
-      <Router>
-        <Nav />
-        <Switch>
-          <Route path="/gasstations">
-            <GasStations />
-          </Route>
-          <Route path="/tankstops">
-            <TankStops />
-          </Route>
-          <Route path="/user">
-            <User />
-          </Route>
-          <Route path='/cars'>
-            <Cars />
-          </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-          <Route path="/rute">
-            <Rute />
-          </Route>
-          <Route path="/addRoutes">
-            <AddRoutes />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </Router>
+      <BrowserRouter>
+      <Nav />
+        <Routes>
+          <Route path="/*" element={<Home />}/>        
+          <Route path="/gasstations" element={<GasStations />} />
+          <Route path="/tankstops" element={<TankStops />}/>          
+          <Route path="/user" element={<User />}/>        
+          <Route path='/cars' element={<Cars />}/>           
+          <Route path="/dashboard" element={<Dashboard />}/>          
+          <Route path="/addRoutes" element={<AddRoutes />}/>          
+          <Route path="/rute" element={<Rute />}/>           
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
