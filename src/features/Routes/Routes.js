@@ -10,7 +10,6 @@ export const Rute = () => {
             <h1>Routes</h1>
             <div>
                 {store.map((obj) =>
-
                     <div className="store" key={obj.id}>
                         <div>
                             <h5>Datum:</h5>
