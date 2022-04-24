@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { removeRoute } from './routeSlice';
+import { deleteRoute, updateRoute } from './routeSlice';
 import { Link } from 'react-router-dom';
 
 export const Rute = () => {
@@ -40,9 +40,11 @@ export const Rute = () => {
                         <div>
                             <h5>Auto:</h5>
                             <p>{obj.car_id}</p>
+                            <p>id: {obj.id}</p>
                         </div>
                         <div>
-                            <button className="dashbutton" onClick={() => dispatch(removeRoute(obj))}>-</button>
+                            <button className="dashbutton" onClick={() => dispatch(deleteRoute(obj))}>-</button>
+                            <button className="dashbutton" onClick={() => dispatch(updateRoute({ id: obj.id, date: 1, start_point: 'da', end_point: 'nicht da', mileage_start: 10, mileage_stop: 12, avg_fuel_consumption: 2, car_id: 1 }))}>Ändern</button>
                         </div>
                     </div>
                 )
