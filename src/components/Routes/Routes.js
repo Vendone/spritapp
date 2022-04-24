@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { deleteRoute, updateRoute } from './routeSlice';
+import { deleteRoute, updateRoute } from '../../features/Routes/routeSlice';
 import { Link } from 'react-router-dom';
 
 export const Rute = () => {

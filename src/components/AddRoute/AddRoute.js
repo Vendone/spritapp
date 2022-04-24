@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addRoute } from "../Routes/routeSlice";
+import { addRoute } from "../../features/Routes/routeSlice";
 
 export const AddRoutes = () => {
     const cars = useSelector(state => state.cars);
