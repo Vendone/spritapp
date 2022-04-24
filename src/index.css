@@ -12,6 +12,19 @@ code {
     monospace;
 }
 
+
+.nav-link {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  background-color: #6678bb;
+  color: #FFFFFF;
+}
+
+.activated {
+  background-color: #3b51a1;
+  color: #FFFFFF;
+}
+
 .store {
   display: flex;
   flex-flow: row;
