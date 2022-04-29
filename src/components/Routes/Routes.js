@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { deleteRoute } from '../../features/Routes/routeSlice';
+import { deleteRoute, loadRoute } from '../../features/Routes/routeSlice';
 import { Link } from 'react-router-dom';
 
 export const Rute = () => {
     const store = useSelector((state) => state.routes);
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(loadRoute());
+    }, []);
+
     return (
         <div>
             <h1>Routes</h1>
+            {store.isLoading ? <p>Loading...</p> : <p></p>}
+            {store.hasError ? <p>Error</p> : <p></p>}
             <div>
-                {(store.length <= 0) ? <p>Keine Einträge vorhanden. Bitte ersten Eintrag hinzufügen</p> : store.map((obj) =>
+                {(store.value.length <= 0) ? <p>Keine Einträge vorhanden. Bitte ersten Eintrag hinzufügen</p> : store.value.map((obj) =>
                     <div className="store" key={obj.id}>
                         <div>
                             <h5>Datum:</h5>
@@ -40,7 +46,6 @@ export const Rute = () => {
                         <div>
                             <h5>Auto:</h5>
                             <p>{obj.car_id}</p>
-                            <p>id: {obj.id}</p>
                         </div>
                         <div>
                             <button className="dashbutton" onClick={() => dispatch(deleteRoute(obj))}>-</button>

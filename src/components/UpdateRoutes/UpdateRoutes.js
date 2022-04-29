@@ -9,12 +9,12 @@ export const UpdateRoute = () => {
     const dispatch = useDispatch();
     const params = useParams();
     const index = 0;
-    const [date, setDate] = useState(routes[index].date);
-    const [start, setStart] = useState(routes[index].start_point);
-    const [end, setEnd] = useState(routes[index].end_point);
-    const [mileageStart, SetMileageStart] = useState(routes[index].mileage_start);
-    const [mileageEnd, setMileageEnd] = useState(routes[index].mileage_stop);
-    const [avgConsumption, setAvgConsumption] = useState(routes[index].avg_fuel_consumption);
+    const [date, setDate] = useState(routes.value[index].date);
+    const [start, setStart] = useState(routes.value[index].start_point);
+    const [end, setEnd] = useState(routes.value[index].end_point);
+    const [mileageStart, SetMileageStart] = useState(routes.value[index].mileage_start);
+    const [mileageEnd, setMileageEnd] = useState(routes.value[index].mileage_stop);
+    const [avgConsumption, setAvgConsumption] = useState(routes.value[index].avg_fuel_consumption);
 
     const handleDate = (e) => {
         setDate(e.target.value);
@@ -55,7 +55,7 @@ export const UpdateRoute = () => {
         <div>
             <h1>update Routes </h1>
             <div>
-                <input type="date" name="date" id="date" defaultValue={date} onChange={handleDate} />
+                <input type="datetime-local" name="date" id="date" defaultValue={date} onChange={handleDate} />
                 <input type="text" name="start" id="start" defaultValue={start} onChange={handleStart} />
                 <input type="text" name="end" id="end" defaultValue={end} onChange={handleEnd} />
                 <input type="number" name="mileageStart" id="mileageStart" step="1" defaultValue={mileageStart} onChange={handleMileageStart} />

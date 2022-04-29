@@ -1,30 +1,61 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
+//Daten laden
+export const loadRoute = createAsyncThunk(
+    "allRoutes/getAllRRoutes",
+    async () => {
+      const data = await fetch("localhost:4001/users");
+      const json = await data.json();
+      return json;
+    }
+  );
+
+//
 const options = {
     name: 'routes',
-    initialState: [],
+    initialState: {
+        value: [],
+        isLoading: false,
+        hasError: false
+    },
     reducers: {
         addRoute: (state, action) => {
-            state.push(action.payload);
+            state.value.push(action.payload);
         },
         updateRoute: (state, action) => {
-            state.map((route) => {
-                if (route.id === action.payload.id) {
-                    route.date = action.payload.date;
-                    route.start_point = action.payload.start_point;
-                    route.end_point = action.payload.end_point;
-                    route.mileage_start = action.payload.mileage_start;
-                    route.mileage_stop = action.payload.mileage_stop;
-                    route.avg_fuel_consumption = action.payload.avg_fuel_consumption;
-                    route.car_id = action.payload.car_id;
+            state.value.map((route) => {
+                if (route.value.id === action.payload.id) {
+                    route.value.date = action.payload.date;
+                    route.value.value.start_point = action.payload.start_point;
+                    route.value.end_point = action.payload.end_point;
+                    route.value.mileage_start = action.payload.mileage_start;
+                    route.value.mileage_stop = action.payload.mileage_stop;
+                    route.value.avg_fuel_consumption = action.payload.avg_fuel_consumption;
+                    route.value.car_id = action.payload.car_id;
 
-                 }
+                }
             });
         },
         deleteRoute: (state, action) => {
-            return state = state.filter((route) => action.payload.id !== route.id);
+            state.value = state.value.filter((route) => action.payload.id !== route.id);
         },
     },
+    extraReducers: {
+        [loadRoute.pending]: (state, action) => {
+            state.isLoading = true;
+            state.hasError = false;
+        },
+        [loadRoute.fulfilled]: (state, action) => {
+            state.value = action.payload;
+            state.isLoading = false;
+            state.hasError = false;
+        },
+        [loadRoute.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.hasError = true;
+        }
+    }
 };
 
 export const routeSlice = createSlice(options);
