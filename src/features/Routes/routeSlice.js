@@ -3,13 +3,16 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 //Daten laden
 export const loadRoute = createAsyncThunk(
-    "allRoutes/getAllRRoutes",
+    'routes/loadRoute',
     async () => {
-      const data = await fetch("localhost:4001/users");
-      const json = await data.json();
-      return json;
+        fetch('https://jsonplaceholder.typicode.com/posts').then(response => {
+            if (!response.ok) {
+                throw new Error(response.statusText)
+            }
+            response.json()
+        }).catch(err => { console.log(err) })
     }
-  );
+);
 
 //
 const options = {
@@ -33,8 +36,8 @@ const options = {
                     route.value.mileage_stop = action.payload.mileage_stop;
                     route.value.avg_fuel_consumption = action.payload.avg_fuel_consumption;
                     route.value.car_id = action.payload.car_id;
-
                 }
+                return route;
             });
         },
         deleteRoute: (state, action) => {
@@ -42,16 +45,16 @@ const options = {
         },
     },
     extraReducers: {
-        [loadRoute.pending]: (state, action) => {
+        [loadRoute.pending]: (state) => {
             state.isLoading = true;
             state.hasError = false;
         },
         [loadRoute.fulfilled]: (state, action) => {
-            state.value = action.payload;
+            state.value.push(action.payload);
             state.isLoading = false;
             state.hasError = false;
         },
-        [loadRoute.rejected]: (state, action) => {
+        [loadRoute.rejected]: (state) => {
             state.isLoading = false;
             state.hasError = true;
         }

@@ -9,13 +9,13 @@ export const Rute = () => {
 
     useEffect(() => {
         dispatch(loadRoute());
-    }, []);
+    }, [dispatch])
 
     return (
         <div>
             <h1>Routes</h1>
             {store.isLoading ? <p>Loading...</p> : <p></p>}
-            {store.hasError ? <p>Error</p> : <p></p>}
+            {store.hasError ? <p>Error{store.value}</p> : <p></p>}
             <div>
                 {(store.value.length <= 0) ? <p>Keine Einträge vorhanden. Bitte ersten Eintrag hinzufügen</p> : store.value.map((obj) =>
                     <div className="store" key={obj.id}>
@@ -46,6 +46,10 @@ export const Rute = () => {
                         <div>
                             <h5>Auto:</h5>
                             <p>{obj.car_id}</p>
+                        </div>
+                        <div>
+                            <h5>Kosten:</h5>
+                            <p>€ {((obj.avg_fuel_consumption / 100) * (obj.mileage_stop - obj.mileage_start)) * 0.62}</p>
                         </div>
                         <div>
                             <button className="dashbutton" onClick={() => dispatch(deleteRoute(obj))}>-</button>

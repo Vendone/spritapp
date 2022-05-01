@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateRoute } from "../../features/Routes/routeSlice";
-import { useParams } from "react-router-dom";
 
 export const UpdateRoute = () => {
     const cars = useSelector(state => state.cars);
     const routes = useSelector(state => state.routes);
     const dispatch = useDispatch();
-    const params = useParams();
     const index = 0;
     const [date, setDate] = useState(routes.value[index].date);
     const [start, setStart] = useState(routes.value[index].start_point);
