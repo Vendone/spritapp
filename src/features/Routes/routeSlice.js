@@ -2,20 +2,38 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 //Daten laden
-
-const POSTS_URL = 'http://192.168.0.233:4001/routes';
-
+const ROUTES_URL = 'http://192.168.0.233:4001/routes';
 export const loadRoute = createAsyncThunk(
     'routes/loadRoute',
     async () => {
         try {
-            const response = await axios.get(POSTS_URL)
+            const response = await axios.get(ROUTES_URL)
             return response.data;
         } catch (err) {
             return err.message;
         }
     })
-
+//
+//Daten senden
+export const postRoute = createAsyncThunk(
+    'routes/postRoute',
+    async (body) => {
+        try {
+            axios.post(ROUTES_URL, {
+                date: Date.now(),
+                start_point: 'test',
+                end_point: 'end',
+                mileage_start: 123,
+                mileage_stop: 321,
+                avg_fuel_consumption: 5.5,
+                user_id: 1,
+                car_id: 1
+            });
+        } catch (err) {
+            return err.message;
+        }
+    }
+)
 //
 const options = {
     name: 'routes',
@@ -61,6 +79,9 @@ const options = {
                 state.isLoading = false;
                 state.hasError = true;
             })
+            .addCase(postRoute.pending, (state, action) => { })
+            .addCase(postRoute.fulfilled, (state, action) => { })
+            .addCase(postRoute.rejected, (state, action) => { })
     }
 };
 
