@@ -17,7 +17,7 @@ export const Rute = () => {
             {store.isLoading ? <p>Loading...</p> : <p></p>}
             {store.hasError ? <p>Error</p> : <p></p>}
             <div>
-                {(store.length <= 0 || store[0] === 'Network Error') ? <p>Keine Einträge vorhanden. Bitte ersten Eintrag hinzufügen</p> : store[0].map((obj) =>
+                {(store.length <= 0) ? <p>Keine Einträge vorhanden. Bitte ersten Eintrag hinzufügen</p> : store[0].map((obj) =>
                     <div className="store" key={obj.id}>
                         <div>
                             <h5>Datum:</h5>
@@ -49,7 +49,7 @@ export const Rute = () => {
                         </div>
                         <div>
                             <h5>Kosten:</h5>
-                            <p>€ {((obj.avg_fuel_consumption / 100) * (obj.mileage_stop - obj.mileage_start)) * 0.62}</p>
+                            <p>€ {(((obj.avg_fuel_consumption / 100) * (obj.mileage_stop - obj.mileage_start)) * 0.62).toFixed(2)}</p>
                         </div>
                         <div>
                             <button className="dashbutton" onClick={() => dispatch(deleteRoute(obj))}>-</button>

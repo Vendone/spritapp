@@ -10,7 +10,7 @@ export const loadRoute = createAsyncThunk(
     async () => {
         try {
             const response = await axios.get(POSTS_URL)
-            return [response.data];
+            return response.data;
         } catch (err) {
             return err.message;
         }
