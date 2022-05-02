@@ -1,18 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 //Daten laden
+
+const POSTS_URL = 'http://192.168.0.233:4001/routes';
+
 export const loadRoute = createAsyncThunk(
     'routes/loadRoute',
     async () => {
-        fetch('https://jsonplaceholder.typicode.com/posts').then(response => {
-            if (!response.ok) {
-                throw new Error(response.statusText)
-            }
-            response.json()
-        }).catch(err => { console.log(err) })
-    }
-);
+        try {
+            const response = await axios.get(POSTS_URL)
+            return [response.data];
+        } catch (err) {
+            return err.message;
+        }
+    })
 
 //
 const options = {
@@ -30,7 +32,7 @@ const options = {
             state.value.map((route) => {
                 if (route.value.id === action.payload.id) {
                     route.value.date = action.payload.date;
-                    route.value.value.start_point = action.payload.start_point;
+                    route.value.start_point = action.payload.start_point;
                     route.value.end_point = action.payload.end_point;
                     route.value.mileage_start = action.payload.mileage_start;
                     route.value.mileage_stop = action.payload.mileage_stop;
@@ -44,24 +46,28 @@ const options = {
             state.value = state.value.filter((route) => action.payload.id !== route.id);
         },
     },
-    extraReducers: {
-        [loadRoute.pending]: (state) => {
-            state.isLoading = true;
-            state.hasError = false;
-        },
-        [loadRoute.fulfilled]: (state, action) => {
-            state.value.push(action.payload);
-            state.isLoading = false;
-            state.hasError = false;
-        },
-        [loadRoute.rejected]: (state) => {
-            state.isLoading = false;
-            state.hasError = true;
-        }
+    extraReducers(builder) {
+        builder
+            .addCase(loadRoute.pending, (state, action) => {
+                state.isLoading = true;
+                state.hasError = false;
+            })
+            .addCase(loadRoute.fulfilled, (state, action) => {
+                state.value.push(action.payload);
+                state.isLoading = false;
+                state.hasError = false;
+            })
+            .addCase(loadRoute.rejected, (state, action) => {
+                state.isLoading = false;
+                state.hasError = true;
+            })
     }
 };
 
 export const routeSlice = createSlice(options);
+
+export const selectAllRoutes = (state) => state.routes.value;
+export const routesError = (state) => state.routes.hasError;
 
 export const { addRoute, updateRoute, deleteRoute } = routeSlice.actions;
 export default routeSlice.reducer;

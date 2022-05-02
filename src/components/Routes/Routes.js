@@ -1,23 +1,23 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { deleteRoute, loadRoute } from '../../features/Routes/routeSlice';
+import { deleteRoute, loadRoute, selectAllRoutes } from '../../features/Routes/routeSlice';
 import { Link } from 'react-router-dom';
 
 export const Rute = () => {
-    const store = useSelector((state) => state.routes);
+    const store = useSelector(selectAllRoutes);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(loadRoute());
-    }, [dispatch])
+    }, [dispatch]);
 
     return (
         <div>
             <h1>Routes</h1>
             {store.isLoading ? <p>Loading...</p> : <p></p>}
-            {store.hasError ? <p>Error{store.value}</p> : <p></p>}
+            {store.hasError ? <p>Error</p> : <p></p>}
             <div>
-                {(store.value.length <= 0) ? <p>Keine Einträge vorhanden. Bitte ersten Eintrag hinzufügen</p> : store.value.map((obj) =>
+                {(store.length <= 0 || store[0] === 'Network Error') ? <p>Keine Einträge vorhanden. Bitte ersten Eintrag hinzufügen</p> : store[0].map((obj) =>
                     <div className="store" key={obj.id}>
                         <div>
                             <h5>Datum:</h5>
