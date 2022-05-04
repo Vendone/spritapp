@@ -40,8 +40,15 @@ export const AddRoutes = () => {
         setAvgConsumption(e.target.value);
     };
     const handleClick = () => {
-        dispatch(postRoute());
-
+        dispatch(postRoute({
+            "start_point": start,
+            "end_point": end,
+            "mileage_start": mileageStart,
+            "mileage_stop": mileageEnd,
+            "avg_fuel_consumption": avgConsumption,
+            "user_id": 1,
+            "car_id": 1
+        }));
         navigate('/rute');
     };
 
