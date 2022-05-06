@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { postRoute } from "../../features/Routes/routeSlice";
+import { addRoute, postRoute } from "../../features/Routes/routeSlice";
 import { useNavigate } from 'react-router-dom';
 
 export const AddRoutes = () => {
@@ -40,15 +40,18 @@ export const AddRoutes = () => {
         setAvgConsumption(e.target.value);
     };
     const handleClick = () => {
-        dispatch(postRoute({
-            "start_point": start,
-            "end_point": end,
-            "mileage_start": mileageStart,
-            "mileage_stop": mileageEnd,
-            "avg_fuel_consumption": avgConsumption,
-            "user_id": 1,
-            "car_id": 1
-        }));
+        const data = {
+            start_point: start,
+            end_point: end,
+            mileage_start: mileageStart,
+            mileage_stop: mileageEnd,
+            avg_fuel_consumption: avgConsumption,
+            user_id: 1,
+            car_id: 1
+        };
+
+        dispatch(postRoute(data));
+        dispatch(addRoute(data));
         navigate('/rute');
     };
 

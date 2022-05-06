@@ -7,8 +7,9 @@ export const loadRoute = createAsyncThunk(
     'routes/loadRoute',
     async () => {
         try {
-            const response = await axios.get(ROUTES_URL)
-            return response.data;
+            const response = await fetch(ROUTES_URL);
+            const jsonResponse = await response.json();
+            return jsonResponse;
         } catch (err) {
             return err.message;
         }
@@ -35,7 +36,7 @@ const options = {
     },
     reducers: {
         addRoute: (state, action) => {
-            state.value.push(action.payload);
+            state.value[0].unshift(action.payload);
         },
         updateRoute: (state, action) => {
             state.value.map((route) => {
