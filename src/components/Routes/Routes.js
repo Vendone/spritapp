@@ -68,6 +68,7 @@ export const Rute = () => {
             <div>
                 <div>
                     <Link to="/addRoute" className="dashbutton">+</Link>
+                    <Link to={`/`} className='dashbutton'>Home</Link>
                 </div>
             </div>
         </div >

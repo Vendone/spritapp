@@ -1,45 +1,54 @@
 import React from 'react';
 import { useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
 
 export const CarCard = () => {
     const store = useSelector((state) => state.cars);
 
-    const alarm = () => { 
-        alert('Hey wie gehts?');
-    }
-
     return (
         <div className="card">
-            <p>Car Card</p>
+            <h3>Car Card</h3>
             {store.map((car) => (
                 <div key={car.id}>
-                    <div>
-                        <h5>Kennzeichen:</h5>
-                        <p>{car.license_plate}</p>
+                    <div className="row">
+                        <div className="left"></div>
+                        <div className="content title"><span>Kennzeichen:</span></div>
+                        <div className="content">{car.license_plate}</div>
+                        <div className="right"></div>
                     </div>
-                    <div>
-                        <h5>Marke:</h5>
-                        <p>{car.brand}</p>
+                    <div className="row">
+                        <div className="left"></div>
+                        <div className="content title"><span>Marke:</span></div>
+                        <div className="content">{car.brand}</div>
+                        <div className="right"></div>
                     </div>
-                    <div>
-                        <h5>Modell:</h5>
-                        <p>{car.modell}</p>
+                    <div className="row">
+                        <div className="left"></div>
+                        <div className="content title"><span>Modell:</span></div>
+                        <div className="content">{car.modell}</div>
+                        <div className="right"></div>
                     </div>
-                    <div>
-                        <h5>Treibstoff:</h5>
-                        <p>{car.fuel}</p>
+                    <div className="row">
+                        <div className="left"></div>
+                        <div className="content title"><span>Treibstoff:</span></div>
+                        <div className="content">{car.fuel}</div>
+                        <div className="right"></div>
                     </div>
-                    <div>
-                        <h5>Baujahr:</h5>
-                        <p>{car.construction_year}</p>
+                    <div className="row">
+                        <div className="left"></div>
+                        <div className="content title"><span>Baujahr:</span></div>
+                        <div className="content">{car.construction_year}</div>
+                        <div className="right"></div>
                     </div>
-                    <div>
-                        <h5>Beschreibung:</h5>
-                        <p>{car.description}</p>
+                    <div className="row">
+                        <div className="left"></div>
+                        <div className="content title"><span>Beschreibung:</span></div>
+                        <div className="content">{car.description}</div>
+                        <div className="right"></div>
                     </div>
                 </div>
             ))}
-            <button className="dashbutton" onClick={alarm}>Bearbeiten</button>
+            <Link to={`/cars`} className='dashbutton'>Bearbeiten</Link>
         </div>
     );
 }

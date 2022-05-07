@@ -8,7 +8,7 @@ import { TankStopCard } from '../TankStopCard/TankStopCard';
 
 export const Dashboard = () => {
     return (
-        <div>
+        <div className='dashboard'>
             <h1>Dashboard</h1>
             <div className='dashboard'>
                 <UserCard />

@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export const User = () => {
     const store = useSelector((state) => state.user);
@@ -27,6 +28,7 @@ export const User = () => {
                     </div>
                 </div>
             )}
+            <Link to={`/`} className='dashbutton'>Home</Link>
         </div>
     );
 }
