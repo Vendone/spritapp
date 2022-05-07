@@ -6,7 +6,6 @@ import { User } from '../User/User';
 import { Dashboard } from '../Dashboard/Dashboard';
 import { Rute } from '../Routes/Routes';
 import { AddRoutes } from '../AddRoute/AddRoute';
-import { Home } from '../Home/Home';
 import { Cars } from '../Cars/Cars';
 import { GasStations } from '../GasStation/GasStation';
 import { TankStops } from '../../features/TankStops/TankStops';
