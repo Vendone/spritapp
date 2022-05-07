@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
-import { updateRoute } from "../../features/Routes/routeSlice";
+import { updateRoute, updateAsyncRoute } from "../../features/Routes/routeSlice";
 
 export const UpdateRoute = () => {
     const cars = useSelector(state => state.cars);
@@ -40,16 +40,27 @@ export const UpdateRoute = () => {
         setAvgConsumption(e.target.value);
     };
     const handleClick = () => {
-        dispatch(updateRoute({
+        const data = {
             id: routes.value[0][0].id,
-            date: date,
             start_point: start,
             end_point: end,
             mileage_start: mileageStart,
             mileage_stop: mileageEnd,
             avg_fuel_consumption: avgConsumption,
             car_id: 1
-        }));
+        };
+        const asyncData = {
+            id: routes.value[0][0].id,
+            start_point: start,
+            end_point: end,
+            mileage_start: mileageStart,
+            mileage_stop: mileageEnd,
+            avg_fuel_consumption: avgConsumption,
+            car_id: 1
+        };
+
+        dispatch(updateAsyncRoute(asyncData));
+        dispatch(updateRoute(data));
         navigate('/rute');
     };
     return (

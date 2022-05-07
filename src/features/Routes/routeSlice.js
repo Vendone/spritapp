@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 //Daten laden
-const ROUTES_URL = 'http://192.168.0.233:4001/routes';
+const ROUTES_URL = 'http://192.168.0.233:4001/routes/';
+
 export const loadRoute = createAsyncThunk(
     'routes/loadRoute',
     async () => {
@@ -26,7 +27,17 @@ export const postRoute = createAsyncThunk(
         }
     }
 )
-
+// Daten ändern
+export const updateAsyncRoute = createAsyncThunk(
+    'routes/updateAsyncRoute',
+    async (data) => {
+        try {
+            await axios.put(ROUTES_URL + data.id, data);
+        } catch (err) {
+            return err.message;
+        }
+    }
+)
 //Daten löschen
 export const deleteAsyncRoute = createAsyncThunk(
     'routes/deleteRoutes',
@@ -89,6 +100,9 @@ const options = {
             .addCase(deleteAsyncRoute.pending, (state, action) => { })
             .addCase(deleteAsyncRoute.fulfilled, (state, action) => { })
             .addCase(deleteAsyncRoute.rejected, (state, action) => { })
+            .addCase(updateAsyncRoute.pending, (state, action) => { })
+            .addCase(updateAsyncRoute.fulfilled, (state, action) => { })
+            .addCase(updateAsyncRoute.rejected, (state, action) => { })
     }
 };
 
