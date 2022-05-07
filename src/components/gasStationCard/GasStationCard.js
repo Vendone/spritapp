@@ -1,28 +1,31 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export const GasStationCard = () => {
     const store = useSelector((state) => state.gasstations);
 
-    const alarm = () => {
-        alert('Hey wie gehts?');
-    }
+
     return (
         <div className="card">
-            <p>Tankstellen Card</p>
+            <h3>Tankstellen Card</h3>
             {store.map((gasStation) => (
                 <div key={gasStation.id}>
-                    <div>
-                        <h5>Name:</h5>
-                        <p>{gasStation.name}</p>
+                    <div className="row">
+                        <div className="left"></div>
+                        <div className="content title"><span>Name:</span></div>
+                        <div className="content">{gasStation.name}</div>
+                        <div className="right"></div>
                     </div>
-                    <div>
-                        <h5>Standort:</h5>
-                        <p>{gasStation.location}</p>
+                    <div className="row">
+                        <div className="left"></div>
+                        <div className="content title"><span>Standort:</span></div>
+                        <div className="content">{gasStation.location}</div>
+                        <div className="right"></div>
                     </div>
                 </div>
             ))}
-            <button className="dashbutton" onClick={alarm}>Bearbeiten</button>
+            <Link to={`/gasstations`} className='dashbutton'>Bearbeiten</Link>
         </div>
     );
 };

@@ -1,48 +1,60 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export const TankStopCard = () => {
     const store = useSelector((state) => state.tankstops);
 
-    const alarm = () => {
-        alert('Hey wie gehts?');
-    }
     return (
         <div className="card">
-            <p>Tankstop Card</p>
+            <h3>Tankstop Card</h3>
             {store.map((tankstop) => (
                 <div key={tankstop.id}>
-                    <div>
-                        <h5>Tankstelle:</h5>
-                        <p>{tankstop.gasstation_id}</p>
+                    <div className="row">
+                        <div className="left"></div>
+                        <div className="content title"><span>Tankstelle:</span></div>
+                        <div className="content">{tankstop.gasstation_id}</div>
+                        <div className="right"></div>
                     </div>
-                    <div>
-                        <h5>Kraftstoff:</h5>
-                        <p>{tankstop.fuel}</p>
+                    <div className="row">
+                        <div className="left"></div>
+                        <div className="content title"><span>Kraftstoff:</span></div>
+                        <div className="content">{tankstop.fuel}</div>
+                        <div className="right"></div>
                     </div>
-                    <div>
-                        <h5>Menge:</h5>
-                        <p>{tankstop.amount}</p>
+                    <div className="row">
+                        <div className="left"></div>
+                        <div className="content title"><span>Menge:</span></div>
+                        <div className="content">{tankstop.amount}</div>
+                        <div className="right"></div>
                     </div>
-                    <div>
-                        <h5>Preis pro Liter:</h5>
-                        <p>{tankstop.price}</p>
+                    <div className="row">
+                        <div className="left"></div>
+                        <div className="content title"><span>Preis pro Liter:</span></div>
+                        <div className="content">{tankstop.price}</div>
+                        <div className="right"></div>
                     </div>
-                    <div>
-                        <h5>KM-Stand:</h5>
-                        <p>{tankstop.milage}</p>
+                    <div className="row">
+                        <div className="left"></div>
+                        <div className="content title"><span>KM-Stand:</span></div>
+                        <div className="content">{tankstop.milage}</div>
+                        <div className="right"></div>
                     </div>
-                    <div>
-                        <h5>Datum:</h5>
-                        <p>{tankstop.date}</p>
+                    <div className="row">
+                        <div className="left"></div>
+                        <div className="content title"><span>Datum:</span></div>
+                        <div className="content">{tankstop.date}</div>
+                        <div className="right"></div>
                     </div>
-                    <div>
-                        <h5>Auto:</h5>
-                        <p>{tankstop.car_id}</p>
+                    <div className="row">
+                        <div className="left"></div>
+                        <div className="content title"><span>Auto:</span></div>
+                        <div className="content">{tankstop.car_id}</div>
+                        <div className="right"></div>
                     </div>
                 </div>
             ))}
-            <button className="dashbutton" onClick={alarm}>Bearbeiten</button>
+            <Link to={`/tankstops`} className='dashbutton'>Bearbeiten</Link>
         </div>
     );
 };
