@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateRoute } from "../../features/Routes/routeSlice";
-import { useParams } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import { updateRoute, updateAsyncRoute } from "../../features/Routes/routeSlice";
 
 export const UpdateRoute = () => {
     const cars = useSelector(state => state.cars);
     const routes = useSelector(state => state.routes);
     const dispatch = useDispatch();
-    const params = useParams();
+    let navigate = useNavigate();
     const index = 0;
-    const [date, setDate] = useState(routes[index].date);
-    const [start, setStart] = useState(routes[index].start_point);
-    const [end, setEnd] = useState(routes[index].end_point);
-    const [mileageStart, SetMileageStart] = useState(routes[index].mileage_start);
-    const [mileageEnd, setMileageEnd] = useState(routes[index].mileage_stop);
-    const [avgConsumption, setAvgConsumption] = useState(routes[index].avg_fuel_consumption);
+    const [date, setDate] = useState(routes.value[0][index].date);
+    const [start, setStart] = useState(routes.value[0][index].start_point);
+    const [end, setEnd] = useState(routes.value[0][index].end_point);
+    const [mileageStart, SetMileageStart] = useState(routes.value[0][index].mileage_start);
+    const [mileageEnd, setMileageEnd] = useState(routes.value[0][index].mileage_stop);
+    const [avgConsumption, setAvgConsumption] = useState(routes.value[0][index].avg_fuel_consumption);
 
     const handleDate = (e) => {
         setDate(e.target.value);
@@ -40,22 +40,34 @@ export const UpdateRoute = () => {
         setAvgConsumption(e.target.value);
     };
     const handleClick = () => {
-        dispatch(updateRoute({
-            id: 0,
-            date: date,
+        const data = {
+            id: routes.value[0][0].id,
             start_point: start,
             end_point: end,
             mileage_start: mileageStart,
             mileage_stop: mileageEnd,
             avg_fuel_consumption: avgConsumption,
             car_id: 1
-        }));
+        };
+        const asyncData = {
+            id: routes.value[0][0].id,
+            start_point: start,
+            end_point: end,
+            mileage_start: mileageStart,
+            mileage_stop: mileageEnd,
+            avg_fuel_consumption: avgConsumption,
+            car_id: 1
+        };
+
+        dispatch(updateAsyncRoute(asyncData));
+        dispatch(updateRoute(data));
+        navigate('/rute');
     };
     return (
         <div>
             <h1>update Routes </h1>
             <div>
-                <input type="date" name="date" id="date" defaultValue={date} onChange={handleDate} />
+                <input type="datetime-local" name="date" id="date" defaultValue={date} onChange={handleDate} />
                 <input type="text" name="start" id="start" defaultValue={start} onChange={handleStart} />
                 <input type="text" name="end" id="end" defaultValue={end} onChange={handleEnd} />
                 <input type="number" name="mileageStart" id="mileageStart" step="1" defaultValue={mileageStart} onChange={handleMileageStart} />

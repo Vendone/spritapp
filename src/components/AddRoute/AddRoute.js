@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addRoute } from "../../features/Routes/routeSlice";
+import { addRoute, postRoute } from "../../features/Routes/routeSlice";
+import { useNavigate } from 'react-router-dom';
 
 export const AddRoutes = () => {
     const cars = useSelector(state => state.cars);
     const routes = useSelector(state => state.routes);
     const dispatch = useDispatch();
+    let navigate = useNavigate();
 
     const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
     const [start, setStart] = useState('');
     const [end, setEnd] = useState('');
     const [mileageStart, SetMileageStart] = useState('');
@@ -17,10 +18,6 @@ export const AddRoutes = () => {
 
     const handleDate = (e) => {
         setDate(e.target.value);
-    };
-
-    const handleTime = (e) => {
-        setTime(e.target.value);
     };
 
     const handleStart = (e) => {
@@ -43,9 +40,7 @@ export const AddRoutes = () => {
         setAvgConsumption(e.target.value);
     };
     const handleClick = () => {
-        dispatch(addRoute({
-            id: (routes.length <= 0) ? 0 : routes[routes.length - 1].id + 1,
-            date: date,
+        const data = {
             start_point: start,
             end_point: end,
             mileage_start: mileageStart,
@@ -53,14 +48,18 @@ export const AddRoutes = () => {
             avg_fuel_consumption: avgConsumption,
             user_id: 1,
             car_id: 1
-        }));
+        };
+
+        dispatch(postRoute(data));
+        dispatch(addRoute(data));
+        navigate('/rute');
     };
+
     return (
         <div>
             <h1>add Routes</h1>
             <div>
-                <input type="date" name="date" id="date" value={date} onChange={handleDate} />
-                <input type="time" name="time" id="time" value={time} onChange={handleTime} />
+                <input type="datetime-local" name="datetime-local" id="date" value={date} onChange={handleDate} />
                 <input type="text" name="start" id="start" value={start} placeholder="Start" onChange={handleStart} />
                 <input type="text" name="end" id="end" value={end} placeholder="Ende" onChange={handleEnd} />
                 <input type="number" name="mileageStart" id="mileageStart" step="1" value={mileageStart} placeholder="km-Stand Anfang" onChange={handleMileageStart} />
