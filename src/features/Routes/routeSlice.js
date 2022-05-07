@@ -14,7 +14,7 @@ export const loadRoute = createAsyncThunk(
             return err.message;
         }
     })
-//
+
 //Daten senden
 export const postRoute = createAsyncThunk(
     'routes/postRoute',
@@ -26,7 +26,19 @@ export const postRoute = createAsyncThunk(
         }
     }
 )
-//
+
+//Daten löschen
+export const deleteAsyncRoute = createAsyncThunk(
+    'routes/deleteRoutes',
+    async (id) => {
+        try {
+
+        } catch (err) {
+            return err.message;
+        }
+    }
+)
+
 const options = {
     name: 'routes',
     initialState: {
@@ -53,7 +65,7 @@ const options = {
             });
         },
         deleteRoute: (state, action) => {
-            state.value = state.value.filter((route) => action.payload.id !== route.id);
+            state.value[0] = state.value[0].filter((route) => action.payload.id !== route.id);
         },
     },
     extraReducers(builder) {
