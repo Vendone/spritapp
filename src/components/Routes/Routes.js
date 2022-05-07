@@ -40,6 +40,10 @@ export const Rute = () => {
                             <p>{obj.mileage_stop}</p>
                         </div>
                         <div>
+                            <h5>gefahrene KM:</h5>
+                            <p>{obj.mileage_stop - obj.mileage_start}</p>
+                        </div>
+                        <div>
                             <h5>durchschnittlicher Verbrauch:</h5>
                             <p>{obj.avg_fuel_consumption}</p>
                         </div>
