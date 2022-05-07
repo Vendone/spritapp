@@ -1,15 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { deleteRoute, loadRoute, selectAllRoutes, deleteAsyncRoute } from '../../features/Routes/routeSlice';
+import { deleteRoute, selectAllRoutes, deleteAsyncRoute } from '../../features/Routes/routeSlice';
 import { Link } from 'react-router-dom';
 
 export const Rute = () => {
     const store = useSelector(selectAllRoutes);
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(loadRoute());
-    }, [dispatch]);
 
     const handleClick = (obj) => {
         dispatch(deleteAsyncRoute(obj.id));

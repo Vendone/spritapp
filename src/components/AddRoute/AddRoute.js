@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 
 export const AddRoutes = () => {
     const cars = useSelector(state => state.cars);
-    const routes = useSelector(state => state.routes);
     const dispatch = useDispatch();
     let navigate = useNavigate();
 

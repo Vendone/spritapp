@@ -36,6 +36,7 @@ code {
   display: inline-flex;
   justify-content: center;
   flex-direction: row;
+  width: 100%;
 }
 
 .card {
@@ -44,13 +45,13 @@ code {
   border: solid 1px #141c3a;
   background-color: none;
   text-align: left;
-  width: 250px;
+  width: 20%;
   margin: 16px;
 }
 
 .dashbutton {
   background-color: #4176e6;
-  color:azure;
+  color: azure;
   border-radius: 10px;
   font-weight: bold;
 }
