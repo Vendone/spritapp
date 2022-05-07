@@ -20,7 +20,7 @@ export const postRoute = createAsyncThunk(
     'routes/postRoute',
     async (body) => {
         try {
-            axios.post(ROUTES_URL, body);
+            await axios.post(ROUTES_URL, body);
         } catch (err) {
             return err.message;
         }
@@ -32,7 +32,7 @@ export const deleteAsyncRoute = createAsyncThunk(
     'routes/deleteRoutes',
     async (id) => {
         try {
-
+            await axios.delete(ROUTES_URL + '/' + id)
         } catch (err) {
             return err.message;
         }
@@ -86,6 +86,9 @@ const options = {
             .addCase(postRoute.pending, (state, action) => { })
             .addCase(postRoute.fulfilled, (state, action) => { })
             .addCase(postRoute.rejected, (state, action) => { })
+            .addCase(deleteAsyncRoute.pending, (state, action) => { })
+            .addCase(deleteAsyncRoute.fulfilled, (state, action) => { })
+            .addCase(deleteAsyncRoute.rejected, (state, action) => { })
     }
 };
 

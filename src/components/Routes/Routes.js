@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { deleteRoute, loadRoute, selectAllRoutes } from '../../features/Routes/routeSlice';
+import { deleteRoute, loadRoute, selectAllRoutes, deleteAsyncRoute } from '../../features/Routes/routeSlice';
 import { Link } from 'react-router-dom';
 
 export const Rute = () => {
@@ -11,12 +11,18 @@ export const Rute = () => {
         dispatch(loadRoute());
     }, [dispatch]);
 
+    const handleClick = (obj) => {
+        dispatch(deleteAsyncRoute(obj.id));
+        dispatch(deleteRoute(obj));
+    }
+
     return (
         <div>
             <h1>Routes</h1>
             {store.isLoading ? <p>Loading...</p> : <p></p>}
             {store.hasError ? <p>Error</p> : <p></p>}
             <div>
+
                 {(store.length <= 0) ? <p>Keine Einträge vorhanden. Bitte ersten Eintrag hinzufügen</p> : store[0].map((obj) =>
                     <div className="store" key={obj.id}>
                         <div>
@@ -56,7 +62,7 @@ export const Rute = () => {
                             <p>€ {(((obj.avg_fuel_consumption / 100) * (obj.mileage_stop - obj.mileage_start)) * 0.62).toFixed(2)}</p>
                         </div>
                         <div>
-                            <button className="dashbutton" onClick={() => dispatch(deleteRoute(obj))}>-</button>
+                            <button className="dashbutton" onClick={() => handleClick(obj)}>-</button>
                             <Link to={`/updateRoute/${obj.id}`} className='dashbutton'>Ändern</Link>
                         </div>
                     </div>
