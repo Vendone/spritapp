@@ -51,15 +51,15 @@ const options = {
             state.value[0].unshift(action.payload);
         },
         updateRoute: (state, action) => {
-            state.value.map((route) => {
-                if (route.value.id === action.payload.id) {
-                    route.value.date = action.payload.date;
-                    route.value.start_point = action.payload.start_point;
-                    route.value.end_point = action.payload.end_point;
-                    route.value.mileage_start = action.payload.mileage_start;
-                    route.value.mileage_stop = action.payload.mileage_stop;
-                    route.value.avg_fuel_consumption = action.payload.avg_fuel_consumption;
-                    route.value.car_id = action.payload.car_id;
+            state.value[0].map((route) => {
+                if (route.id === action.payload.id) {
+                    route.date = action.payload.date;
+                    route.start_point = action.payload.start_point;
+                    route.end_point = action.payload.end_point;
+                    route.mileage_start = action.payload.mileage_start;
+                    route.mileage_stop = action.payload.mileage_stop;
+                    route.avg_fuel_consumption = action.payload.avg_fuel_consumption;
+                    route.car_id = action.payload.car_id;
                 }
                 return route;
             });

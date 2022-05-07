@@ -7,12 +7,12 @@ export const UpdateRoute = () => {
     const routes = useSelector(state => state.routes);
     const dispatch = useDispatch();
     const index = 0;
-    const [date, setDate] = useState(routes.value[index].date);
-    const [start, setStart] = useState(routes.value[index].start_point);
-    const [end, setEnd] = useState(routes.value[index].end_point);
-    const [mileageStart, SetMileageStart] = useState(routes.value[index].mileage_start);
-    const [mileageEnd, setMileageEnd] = useState(routes.value[index].mileage_stop);
-    const [avgConsumption, setAvgConsumption] = useState(routes.value[index].avg_fuel_consumption);
+    const [date, setDate] = useState(routes.value[0][index].date);
+    const [start, setStart] = useState(routes.value[0][index].start_point);
+    const [end, setEnd] = useState(routes.value[0][index].end_point);
+    const [mileageStart, SetMileageStart] = useState(routes.value[0][index].mileage_start);
+    const [mileageEnd, setMileageEnd] = useState(routes.value[0][index].mileage_stop);
+    const [avgConsumption, setAvgConsumption] = useState(routes.value[0][index].avg_fuel_consumption);
 
     const handleDate = (e) => {
         setDate(e.target.value);
@@ -39,7 +39,7 @@ export const UpdateRoute = () => {
     };
     const handleClick = () => {
         dispatch(updateRoute({
-            id: 0,
+            id: routes.value[0][0].id,
             date: date,
             start_point: start,
             end_point: end,
