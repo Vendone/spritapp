@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { updateRoute } from "../../features/Routes/routeSlice";
 
 export const UpdateRoute = () => {
     const cars = useSelector(state => state.cars);
     const routes = useSelector(state => state.routes);
     const dispatch = useDispatch();
+    let navigate = useNavigate();
     const index = 0;
     const [date, setDate] = useState(routes.value[0][index].date);
     const [start, setStart] = useState(routes.value[0][index].start_point);
@@ -48,6 +50,7 @@ export const UpdateRoute = () => {
             avg_fuel_consumption: avgConsumption,
             car_id: 1
         }));
+        navigate('/rute');
     };
     return (
         <div>
