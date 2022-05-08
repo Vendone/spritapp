@@ -18,7 +18,7 @@ export const Rute = () => {
             {store.isLoading ? <p>Loading...</p> : <p></p>}
             {store.hasError ? <p>Error</p> : <p></p>}
             <div>
-                {(store[0] == 'Failed to fetch') ? <p>Server fehler. Bitte später noch einmal probieren.</p> :
+                {(store[0] === 'Failed to fetch') ? <p>Server fehler. Bitte später noch einmal probieren.</p> :
                     (store.length <= 0) ? <p>Keine Einträge vorhanden. Bitte ersten Eintrag hinzufügen</p> : store[0].map((obj) =>
                         <div className="store" key={obj.id}>
                             <div>
