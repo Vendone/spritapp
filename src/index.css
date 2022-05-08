@@ -37,6 +37,11 @@ h5,
   width: 412px;
 }
 
+.entry {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .card {
   border-radius: 10px;
   background-color: none;

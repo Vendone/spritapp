@@ -17,7 +17,7 @@ export const RoutesCard = () => {
             <div>
                 {(store[0] === 'Failed to fetch') ? <p>Server fehler. Bitte später noch einmal probieren.</p> :
                     (store.length <= 0) ? <p>Keine Einträge vorhanden. Bitte ersten Eintrag hinzufügen</p> : store[0].map((route) => (
-                        <div key={route.id}>
+                        <div className="entry" key={route.id}>
                             <div className="row">
                                 <div className="left"></div>
                                 <div className="content title"><span>Start:</span></div>

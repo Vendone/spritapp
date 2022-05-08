@@ -10,7 +10,7 @@ export const GasStationCard = () => {
         <div className="card">
             <h3>Tankstellen Card</h3>
             {store.map((gasStation) => (
-                <div key={gasStation.id}>
+                <div className="entry" key={gasStation.id}>
                     <div className="row">
                         <div className="left"></div>
                         <div className="content title"><span>Name:</span></div>
