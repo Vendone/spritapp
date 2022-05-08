@@ -15,46 +15,47 @@ export const RoutesCard = () => {
         <div className="card">
             <h3>Ruten Card</h3>
             <div>
-                {(store.length <= 0) ? <p>Keine Einträge vorhanden. Bitte ersten Eintrag hinzufügen</p> : store[0].map((route) => (
-                    <div key={route.id}>
-                        <div className="row">
-                            <div className="left"></div>
-                            <div className="content title"><span>Start:</span></div>
-                            <div className="content">{route.start_point}</div>
-                            <div className="right"></div>
+                {(store[0] == 'Failed to fetch') ? <p>Server fehler. Bitte später noch einmal probieren.</p> :
+                    (store.length <= 0) ? <p>Keine Einträge vorhanden. Bitte ersten Eintrag hinzufügen</p> : store[0].map((route) => (
+                        <div key={route.id}>
+                            <div className="row">
+                                <div className="left"></div>
+                                <div className="content title"><span>Start:</span></div>
+                                <div className="content">{route.start_point}</div>
+                                <div className="right"></div>
+                            </div>
+                            <div className="row">
+                                <div className="left"></div>
+                                <div className="content title"><span>Stop:</span></div>
+                                <div className="content">{route.end_point}</div>
+                                <div className="right"></div>
+                            </div>
+                            <div className="row">
+                                <div className="left"></div>
+                                <div className="content title"><span>KM-Start:</span></div>
+                                <div className="content">{route.mileage_start}</div>
+                                <div className="right"></div>
+                            </div>
+                            <div className="row">
+                                <div className="left"></div>
+                                <div className="content title"><span>KM-Ende:</span></div>
+                                <div className="content">{route.mileage_stop}</div>
+                                <div className="right"></div>
+                            </div>
+                            <div className="row">
+                                <div className="left"></div>
+                                <div className="content title"><span>durchschnittlicher Verbrauch:</span></div>
+                                <div className="content">{route.avg_fuel_consumption}</div>
+                                <div className="right"></div>
+                            </div>
+                            <div className="row">
+                                <div className="left"></div>
+                                <div className="content title"><span>Auto:</span></div>
+                                <div className="content">{route.car_id}</div>
+                                <div className="right"></div>
+                            </div>
                         </div>
-                        <div className="row">
-                            <div className="left"></div>
-                            <div className="content title"><span>Stop:</span></div>
-                            <div className="content">{route.end_point}</div>
-                            <div className="right"></div>
-                        </div>
-                        <div className="row">
-                            <div className="left"></div>
-                            <div className="content title"><span>KM-Start:</span></div>
-                            <div className="content">{route.mileage_start}</div>
-                            <div className="right"></div>
-                        </div>
-                        <div className="row">
-                            <div className="left"></div>
-                            <div className="content title"><span>KM-Ende:</span></div>
-                            <div className="content">{route.mileage_stop}</div>
-                            <div className="right"></div>
-                        </div>
-                        <div className="row">
-                            <div className="left"></div>
-                            <div className="content title"><span>durchschnittlicher Verbrauch:</span></div>
-                            <div className="content">{route.avg_fuel_consumption}</div>
-                            <div className="right"></div>
-                        </div>
-                        <div className="row">
-                            <div className="left"></div>
-                            <div className="content title"><span>Auto:</span></div>
-                            <div className="content">{route.car_id}</div>
-                            <div className="right"></div>
-                        </div>
-                    </div>
-                ))}
+                    ))}
             </div>
             <Link to={`/rute`} className='dashbutton'>Bearbeiten</Link>
         </div>
