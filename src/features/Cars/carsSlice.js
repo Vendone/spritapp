@@ -53,13 +53,12 @@ export const deleteAsyncCar = createAsyncThunk(
 // Slice Object
 const options = {
     name: 'cars',
-    initialState: [
-        {
-            value: [],
-            isLoading: false,
-            hasError: false
-        }
-    ],
+    initialState:
+    {
+        value: [],
+        isLoading: false,
+        hasError: false
+    },
     reducers: {
         addCar: (state, action) => {
             state.value[0].unshift(action.payload);
