@@ -9,7 +9,7 @@ export const TankStopCard = () => {
         <div className="card">
             <h3>Tankstop Card</h3>
             {store.map((tankstop) => (
-                <div key={tankstop.id}>
+                <div className="entry" key={tankstop.id}>
                     <div className="row">
                         <div className="left"></div>
                         <div className="content title"><span>Tankstelle:</span></div>

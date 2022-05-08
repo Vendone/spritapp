@@ -9,7 +9,7 @@ export const UserCard = () => {
         <div className="card">
             <h3>User Card</h3>
             {store.map((user) => (
-                <div key={user.id}>
+                <div className="entry" key={user.id}>
                     <div className="row">
                         <div className="left"></div>
                         <div className="content title"><span>Username:</span></div>

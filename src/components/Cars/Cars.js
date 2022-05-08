@@ -1,15 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { selectAllCars } from "../../features/Cars/carsSlice";
 
 export const Cars = () => {
-    const store = useSelector((state) => state.cars);
+    const store = useSelector(selectAllCars);
 
     return (
         <div>
             <h1>Cars</h1>
             <div>
-                {store.map((car) =>
+                {store[0].map((car) =>
                     <div className="store" key={car.id}>
                         <div>
                             <h5>Kennzeichen:</h5>
