@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { loadGasstation, selectGasstations } from "../../features/GasStation/gasStationSlice";
+import { loadGasstation, selectGasstations } from "../../features/GasStations/gasStationSlice";
 
 export const GasstationCard = () => {
     const store = useSelector(selectGasstations);
