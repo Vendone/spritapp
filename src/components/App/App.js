@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { User } from '../User/User';
 import { Dashboard } from '../Dashboard/Dashboard';
-import { Rute } from '../Routes/Routes';
+import { AllRoutes } from '../Routes/Routes';
 import { AddRoutes } from '../AddRoute/AddRoute';
 import { Cars } from '../Cars/Cars';
 import { GasStations } from '../GasStation/GasStation';
@@ -21,7 +21,7 @@ export default function App() {
           <Route path='/cars' element={<Cars />} />
           <Route path="/addRoute" element={<AddRoutes />} />
           <Route path="/updateRoute/:id" element={<UpdateRoute />} />
-          <Route path="/rute" element={<Rute />} />
+          <Route path="/routes" element={<AllRoutes />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -15,8 +15,8 @@ export const RoutesCard = () => {
         <div className="card">
             <h3>Ruten Card</h3>
             <div>
-                {(store[0] === 'Failed to fetch') ? <p>Server fehler. Bitte später noch einmal probieren.</p> :
-                    (store.length <= 0) ? <p>Keine Einträge vorhanden. Bitte ersten Eintrag hinzufügen</p> : store[0].map((route) => (
+                {(store.value[0] === 'Failed to fetch') ? <p>Server fehler. Bitte später noch einmal probieren.</p> :
+                    (store.value.length <= 0) ? <p>Keine Einträge vorhanden. Bitte ersten Eintrag hinzufügen</p> : store.value[0].map((route) => (
                         <div className="entry" key={route.id}>
                             <div className="row">
                                 <div className="left"></div>
@@ -44,7 +44,7 @@ export const RoutesCard = () => {
                             </div>
                             <div className="row">
                                 <div className="left"></div>
-                                <div className="content title"><span>durchschnittlicher Verbrauch:</span></div>
+                                <div className="content title"><span>&oslash; Verbrauch:</span></div>
                                 <div className="content">{route.avg_fuel_consumption}</div>
                                 <div className="right"></div>
                             </div>
@@ -57,7 +57,7 @@ export const RoutesCard = () => {
                         </div>
                     ))}
             </div>
-            <Link to={`/rute`} className='dashbutton'>Bearbeiten</Link>
+            <Link to={`/routes`} className='dashbutton'>Bearbeiten</Link>
         </div>
     );
 };
