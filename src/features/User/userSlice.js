@@ -1,28 +1,139 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+const USER_URL = 'http://192.168.0.233:4001/users/';
+
+export const loadUser = createAsyncThunk(
+    'users/loadUser',
+    async () => {
+        try {
+            const response = await fetch(USER_URL);
+            const jsonResponse = await response.json();
+            return jsonResponse;
+        } catch (err) {
+            return err.message;
+        }
+    })
+
+//Daten senden
+export const postUser = createAsyncThunk(
+    'users/postUser',
+    async (body) => {
+        try {
+            await axios.post(USER_URL, body);
+        } catch (err) {
+            return err.message;
+        }
+    }
+)
+// Daten ändern
+export const updateAsyncUser = createAsyncThunk(
+    'users/updateAsyncUser',
+    async (data) => {
+        try {
+            await axios.put(USER_URL + data.id, data);
+        } catch (err) {
+            return err.message;
+        }
+    }
+)
+//Daten löschen
+export const deleteAsyncUser = createAsyncThunk(
+    'users/deleteAsyncUser',
+    async (id) => {
+        try {
+            await axios.delete(USER_URL + '/' + id)
+        } catch (err) {
+            return err.message;
+        }
+    }
+)
 
 // Slice Object
 const options = {
     name: 'user',
-    initialState: [
-        {
-            id: 1,
-            first_name: 'Andreas',
-            last_name: 'Venturin',
-            email: 'andreasventurin@gmail.com',
-            password: '123456'
-        }
-    ],
+    initialState:
+    {
+        value: [],
+        isLoading: false,
+        hasError: false
+    },
     reducers: {
         addUser: (state, action) => {
-            state.push(action.payload);
+            state.value[0].unshift(action.payload);
         },
-        removeUser: (state, action) => {
-            state.filter(user => user.id !== action.payload.id)
-        }
+        updateUser: (state, action) => {
+            state.value[0].map((user) => {
+                if (user.id === action.payload.id) {
+                    user.first_name = action.payload.first_name;
+                    user.last_name = action.payload.last_name;
+                    user.email = action.payload.email;
+                }
+                return user;
+            });
+        },
+        deleteUser: (state, action) => {
+            state.value[0] = state.value[0].filter((user) => action.payload.id !== user.id);
+        },
+    },
+    extraReducers(builder) {
+        builder
+            .addCase(loadUser.pending, (state, action) => {
+                state.isLoading = true;
+                state.hasError = false;
+            })
+            .addCase(loadUser.fulfilled, (state, action) => {
+                state.value.push(action.payload);
+                state.isLoading = false;
+                state.hasError = false;
+            })
+            .addCase(loadUser.rejected, (state, action) => {
+                state.isLoading = false;
+                state.hasError = true;
+            })
+            .addCase(postUser.pending, (state, action) => {
+                state.isLoading = true;
+                state.hasError = false;
+            })
+            .addCase(postUser.fulfilled, (state, action) => {
+                state.value.push(action.payload);
+                state.isLoading = false;
+                state.hasError = false;
+            })
+            .addCase(postUser.rejected, (state, action) => {
+                state.isLoading = false;
+                state.hasError = true;
+            })
+            .addCase(deleteAsyncUser.pending, (state, action) => {
+                state.isLoading = true;
+                state.hasError = false;
+            })
+            .addCase(deleteAsyncUser.fulfilled, (state, action) => {
+                state.value.push(action.payload);
+                state.isLoading = false;
+                state.hasError = false;
+            })
+            .addCase(deleteAsyncUser.rejected, (state, action) => {
+                state.isLoading = false;
+                state.hasError = true;
+            })
+            .addCase(updateAsyncUser.pending, (state, action) => {
+                state.isLoading = true;
+                state.hasError = false;
+            })
+            .addCase(updateAsyncUser.fulfilled, (state, action) => {
+                state.value.push(action.payload);
+                state.isLoading = false;
+                state.hasError = false;
+            })
+            .addCase(updateAsyncUser.rejected, (state, action) => {
+                state.isLoading = false;
+                state.hasError = true;
+            })
     }
 }
 
-export const userSlice = createSlice(options);
-
-export const { addUser, removeUser } = userSlice.actions;
-export default userSlice.reducer;
+export const usersSlice = createSlice(options);
+export const selectUsers = (state) => state.user;
+export const { addUser, updateUser, deleteUser } = usersSlice.actions;
+export default usersSlice.reducer;
