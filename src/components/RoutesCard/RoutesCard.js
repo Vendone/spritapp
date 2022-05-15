@@ -15,7 +15,7 @@ export const RoutesCard = () => {
         <div className="card">
             <h3>Ruten Card</h3>
             <div>
-                {(store.isLoading) ? <div className="loader"></div> : (store.value[0] === 'Failed to fetch') ? <div className="fail">x</div> :
+                {(store.isLoading) ? <div className="loader"></div> : (store.value[0] === 'Failed to fetch' || store.value[0] === 'Unexpected token < in JSON at position 0') ? <div className="fail">x</div> :
                     (store.value[0] === 'Failed to fetch') ? <p>Server fehler. Bitte später noch einmal probieren.</p> :
                         (store.value.length <= 0) ? <p>Keine Einträge vorhanden. Bitte ersten Eintrag hinzufügen</p> : store.value[0].map((route) => (
                             <div className="entry" key={route.id}>
