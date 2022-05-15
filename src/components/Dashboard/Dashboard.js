@@ -1,7 +1,7 @@
 import React from 'react';
 import { UserCard } from '../../components/UserCard/UserCard';
 import { CarCard } from '../../components/CarCard/CarCard';
-import { GasStationCard } from '../gasStationCard/GasStationCard';
+import { GasstationCard } from '../gasStationCard/GasStationCard';
 import { RoutesCard } from '../RoutesCard/RoutesCard';
 import { TankStopCard } from '../TankStopCard/TankStopCard';
 
@@ -13,7 +13,7 @@ export const Dashboard = () => {
             <div className='dashboard'>
                 <UserCard />
                 <CarCard />
-                <GasStationCard />
+                <GasstationCard />
                 <RoutesCard />
                 <TankStopCard />
             </div>

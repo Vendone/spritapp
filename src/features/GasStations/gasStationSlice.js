@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const USER_URL = 'http://192.168.0.233:4001/users/';
+const GASSTATION_URL = 'http://192.168.0.233:4001/gasstations/';
 
-export const loadUser = createAsyncThunk(
-    'users/loadUser',
+export const loadGasstation = createAsyncThunk(
+    'gasstations/loadGasstation',
     async () => {
         try {
-            const response = await fetch(USER_URL);
+            const response = await fetch(GASSTATION_URL);
             const jsonResponse = await response.json();
             return jsonResponse;
         } catch (err) {
@@ -16,33 +16,33 @@ export const loadUser = createAsyncThunk(
     })
 
 //Daten senden
-export const postUser = createAsyncThunk(
-    'users/postUser',
+export const postGasstation = createAsyncThunk(
+    'gasstations/postGasstation',
     async (body) => {
         try {
-            await axios.post(USER_URL, body);
+            await axios.post(GASSTATION_URL, body);
         } catch (err) {
             return err.message;
         }
     }
 )
 // Daten ändern
-export const updateAsyncUser = createAsyncThunk(
-    'users/updateAsyncUser',
+export const updateAsyncGasstation = createAsyncThunk(
+    'gasstations/updateAsyncGasstation',
     async (data) => {
         try {
-            await axios.put(USER_URL + data.id, data);
+            await axios.put(GASSTATION_URL + data.id, data);
         } catch (err) {
             return err.message;
         }
     }
 )
 //Daten löschen
-export const deleteAsyncUser = createAsyncThunk(
-    'users/deleteAsyncUser',
+export const deleteAsyncGasstation = createAsyncThunk(
+    'gasstations/deleteAsyncGasstation',
     async (id) => {
         try {
-            await axios.delete(USER_URL + '/' + id)
+            await axios.delete(GASSTATION_URL + '/' + id)
         } catch (err) {
             return err.message;
         }
@@ -51,7 +51,7 @@ export const deleteAsyncUser = createAsyncThunk(
 
 // Slice Object
 const options = {
-    name: 'user',
+    name: 'gasstations',
     initialState:
     {
         value: [],
@@ -59,81 +59,80 @@ const options = {
         hasError: false
     },
     reducers: {
-        addUser: (state, action) => {
+        addGasstation: (state, action) => {
             state.value[0].unshift(action.payload);
         },
-        updateUser: (state, action) => {
-            state.value[0].map((user) => {
-                if (user.id === action.payload.id) {
-                    user.first_name = action.payload.first_name;
-                    user.last_name = action.payload.last_name;
-                    user.email = action.payload.email;
+        updateGasstation: (state, action) => {
+            state.value[0].map((gasstation) => {
+                if (gasstation.id === action.payload.id) {
+                    gasstation.name = action.payload.name;
+                    gasstation.location = action.payload.loacation;
                 }
-                return user;
+                return gasstation;
             });
         },
-        deleteUser: (state, action) => {
-            state.value[0] = state.value[0].filter((user) => action.payload.id !== user.id);
+        deleteGasstation: (state, action) => {
+            state.value[0] = state.value[0].filter((gasstation) => action.payload.id !== gasstation.id);
         },
     },
     extraReducers(builder) {
         builder
-            .addCase(loadUser.pending, (state, action) => {
+            .addCase(loadGasstation.pending, (state, action) => {
                 state.isLoading = true;
                 state.hasError = false;
             })
-            .addCase(loadUser.fulfilled, (state, action) => {
+            .addCase(loadGasstation.fulfilled, (state, action) => {
                 state.value.push(action.payload);
                 state.isLoading = false;
                 state.hasError = false;
             })
-            .addCase(loadUser.rejected, (state, action) => {
+            .addCase(loadGasstation.rejected, (state, action) => {
                 state.isLoading = false;
                 state.hasError = true;
             })
-            .addCase(postUser.pending, (state, action) => {
+            .addCase(postGasstation.pending, (state, action) => {
                 state.isLoading = true;
                 state.hasError = false;
             })
-            .addCase(postUser.fulfilled, (state, action) => {
+            .addCase(postGasstation.fulfilled, (state, action) => {
                 state.value.push(action.payload);
                 state.isLoading = false;
                 state.hasError = false;
             })
-            .addCase(postUser.rejected, (state, action) => {
+            .addCase(postGasstation.rejected, (state, action) => {
                 state.isLoading = false;
                 state.hasError = true;
             })
-            .addCase(deleteAsyncUser.pending, (state, action) => {
+            .addCase(deleteAsyncGasstation.pending, (state, action) => {
                 state.isLoading = true;
                 state.hasError = false;
             })
-            .addCase(deleteAsyncUser.fulfilled, (state, action) => {
+            .addCase(deleteAsyncGasstation.fulfilled, (state, action) => {
                 state.value.push(action.payload);
                 state.isLoading = false;
                 state.hasError = false;
             })
-            .addCase(deleteAsyncUser.rejected, (state, action) => {
+            .addCase(deleteAsyncGasstation.rejected, (state, action) => {
                 state.isLoading = false;
                 state.hasError = true;
             })
-            .addCase(updateAsyncUser.pending, (state, action) => {
+            .addCase(updateAsyncGasstation.pending, (state, action) => {
                 state.isLoading = true;
                 state.hasError = false;
             })
-            .addCase(updateAsyncUser.fulfilled, (state, action) => {
+            .addCase(updateAsyncGasstation.fulfilled, (state, action) => {
                 state.value.push(action.payload);
                 state.isLoading = false;
                 state.hasError = false;
             })
-            .addCase(updateAsyncUser.rejected, (state, action) => {
+            .addCase(updateAsyncGasstation.rejected, (state, action) => {
                 state.isLoading = false;
                 state.hasError = true;
             })
     }
 }
 
-export const usersSlice = createSlice(options);
-export const selectUsers = (state) => state.user;
-export const { addUser, updateUser, deleteUser } = usersSlice.actions;
-export default usersSlice.reducer;
+export const gasstationsSlice = createSlice(options);
+export const selectGasstations = (state) => state.gasstations;
+export const { addGasstation, updateGasstation, deleteGasstation } = gasstationsSlice.actions;
+export default gasstationsSlice.reducer;
