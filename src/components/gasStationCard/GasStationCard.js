@@ -1,30 +1,36 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { loadGasstation, selectGasstations } from "../../features/GasStation/gasStationSlice";
 
-export const GasStationCard = () => {
-    const store = useSelector((state) => state.gasstations);
+export const GasstationCard = () => {
+    const store = useSelector(selectGasstations);
+    const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(loadGasstation());
+    }, [dispatch])
 
     return (
         <div className="card">
             <h3>Tankstellen Card</h3>
-            {store.map((gasStation) => (
-                <div className="entry" key={gasStation.id}>
-                    <div className="row">
-                        <div className="left"></div>
-                        <div className="content title"><span>Name:</span></div>
-                        <div className="content">{gasStation.name}</div>
-                        <div className="right"></div>
+            {(store.isLoading) ? <div className="loader"></div> : (store.value[0] === 'Failed to fetch') ? <div className="fail">x</div> :
+                (store.value.length <= 0) ? <p>Keine Einträge vorhanden. Bitte ersten Eintrag hinzufügen</p> : store.value[0].map((gasstation) => (
+                    <div className="entry" key={gasstation.id}>
+                        <div className="row">
+                            <div className="left"></div>
+                            <div className="content title"><span>Name:</span></div>
+                            <div className="content">{gasstation.name}</div>
+                            <div className="right"></div>
+                        </div>
+                        <div className="row">
+                            <div className="left"></div>
+                            <div className="content title"><span>Standort:</span></div>
+                            <div className="content">{gasstation.location}</div>
+                            <div className="right"></div>
+                        </div>
                     </div>
-                    <div className="row">
-                        <div className="left"></div>
-                        <div className="content title"><span>Standort:</span></div>
-                        <div className="content">{gasStation.location}</div>
-                        <div className="right"></div>
-                    </div>
-                </div>
-            ))}
+                ))}
             <Link to={`/gasstations`} className='dashbutton'>Bearbeiten</Link>
         </div>
     );

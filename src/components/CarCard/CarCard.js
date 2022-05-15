@@ -14,8 +14,8 @@ export const CarCard = () => {
     return (
         <div className="card">
             <h3>Car Card</h3>
-            {(store[0] === 'Failed to fetch') ? <p>Server fehler. Bitte später noch einmal probieren.</p> :
-                (store.length <= 0) ? <p>Keine Einträge vorhanden. Bitte ersten Eintrag hinzufügen</p> : store[0].map((car) => (
+            {(store.isLoading) ? <div className="loader"></div> : (store.value[0] === 'Failed to fetch') ? <div className="fail">x</div> :
+                (store.value.length <= 0) ? <p>Keine Einträge vorhanden. Bitte ersten Eintrag hinzufügen</p> : store.value[0].map((car) => (
                     <div className="entry" key={car.id}>
                         <div className="row">
                             <div className="left"></div>
