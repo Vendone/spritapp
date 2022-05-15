@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addRoute, postRoute } from "../../features/Routes/routeSlice";
+import { selectAllCars, loadCars } from "../../features/Cars/carsSlice";
 import { useNavigate } from 'react-router-dom';
 
 export const AddRoutes = () => {
-    const cars = useSelector(state => state.cars);
+    const cars = useSelector(selectAllCars);
     const dispatch = useDispatch();
     let navigate = useNavigate();
+
+    useEffect(() => {
+        dispatch(loadCars());
+    }, [dispatch])
 
     const [date, setDate] = useState('');
     const [start, setStart] = useState('');
@@ -51,7 +56,7 @@ export const AddRoutes = () => {
 
         dispatch(postRoute(data));
         dispatch(addRoute(data));
-        navigate('/rute');
+        navigate('/');
     };
 
     return (
@@ -65,7 +70,7 @@ export const AddRoutes = () => {
                 <input type="number" name="mileageEnd" id="mileageEnd" step="1" value={mileageEnd} placeholder="km-Stand Ende" onChange={handleMileageEnd} />
                 <input type="number" name="avgConsumtion" id="avgConsumtion" step="0.1" value={avgConsumption} placeholder="durchschnitts Verbrauch" onChange={handleAvgConsumption} />
                 <select name="cars" id="cars">
-                    {cars.map((car) => (<option value={car.id} key={car.id}>{car.license_plate}</option>))}
+                    {cars.value[0].map((car) => (<option value={car.id} key={car.id}>{car.license_plate}</option>))}
                 </select>
                 <input className="dashbutton" type="submit" onClick={handleClick} />
             </div>

@@ -58,7 +58,8 @@ export const RoutesCard = () => {
                             </div>
                         ))}
             </div>
-            <Link to={`/routes`} className='dashbutton'>Bearbeiten</Link>
+            <Link to={`/routes`} className="dashbutton">Bearbeiten</Link>
+            <Link to={'/addRoute'} className="dashbutton">+</Link>
         </div>
     );
 };
