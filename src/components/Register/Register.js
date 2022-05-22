@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { postUser, selectUsers } from '../../features/User/userSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { postUser } from '../../features/User/userSlice';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export const Register = () => {
-    const store = useSelector(selectUsers);
-    let navigate = useNavigate();
     const dispatch = useDispatch();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -41,49 +39,49 @@ export const Register = () => {
     }
 
     return (
-        <div class="container">
-            <div class="screen">
-                <div class="screen__content">
-                    <div class="login">
-                        <div class="login__field">
-                            <i class="login__icon fas fa-user"></i>
-                            <input type="text" name="first_name" class="login__input" placeholder="Vorname" value={firstName} onChange={handleFirstName} />
+        <div className="container">
+            <div className="screen">
+                <div className="screen__content">
+                    <div className="login">
+                        <div className="login__field">
+                            <i className="login__icon fas fa-user"></i>
+                            <input type="text" name="first_name" className="login__input" placeholder="Vorname" value={firstName} onChange={handleFirstName} />
                         </div>
-                        <div class="login__field">
-                            <i class="login__icon fas fa-user"></i>
-                            <input type="text" name="last_name" class="login__input" placeholder="Nachname" value={lastName} onChange={handleLastName} />
+                        <div className="login__field">
+                            <i className="login__icon fas fa-user"></i>
+                            <input type="text" name="last_name" className="login__input" placeholder="Nachname" value={lastName} onChange={handleLastName} />
                         </div>
-                        <div class="login__field">
-                            <i class="login__icon fas fa-envelope"></i>
-                            <input type="email" name="email" class="login__input" placeholder="Email" value={email} onChange={handleEmail} />
+                        <div className="login__field">
+                            <i className="login__icon fas fa-envelope"></i>
+                            <input type="email" name="email" className="login__input" placeholder="Email" value={email} onChange={handleEmail} />
                         </div>
-                        <div class="login__field">
-                            <i class="login__icon fas fa-lock"></i>
-                            <input type="password" name="password" class="login__input" placeholder="Passwort" value={password} onChange={handlePassword} />
+                        <div className="login__field">
+                            <i className="login__icon fas fa-lock"></i>
+                            <input type="password" name="password" className="login__input" placeholder="Passwort" value={password} onChange={handlePassword} />
                         </div>
-                        <div class="login__field">
-                            <i class="login__icon fas fa-lock"></i>
-                            <input type="password" name="confirm_password" class="login__input" placeholder="Passwort wiederholen" value={confirmPassword} onChange={handleConfirmPassword} />
+                        <div className="login__field">
+                            <i className="login__icon fas fa-lock"></i>
+                            <input type="password" name="confirm_password" className="login__input" placeholder="Passwort wiederholen" value={confirmPassword} onChange={handleConfirmPassword} />
                         </div>
-                        <button class="button login__submit" onClick={handleClick}>
-                            <span class="button__text">Register Now</span>
-                            <i class="button__icon fas fa-chevron-right"></i>
+                        <button className="button login__submit" onClick={handleClick}>
+                            <span className="button__text">Register Now</span>
+                            <i className="button__icon fas fa-chevron-right"></i>
                         </button>
                     </div>
-                    <div class="social-login">
+                    <div className="social-login">
                         <h3>log in via</h3>
-                        <div class="social-icons">
-                            <a href="#" class="social-login__icon fab fa-instagram"></a>
-                            <a href="#" class="social-login__icon fab fa-facebook"></a>
-                            <a href="#" class="social-login__icon fab fa-twitter"></a>
+                        <div className="social-icons">
+                            <Link to='#'><i className='social-login__icon fab fa-instagram'></i></Link>
+                            <Link to='#'><i className='social-login__icon fab fa-facebook'></i></Link>
+                            <Link to='#'><i className='social-login__icon fab fa-twitter'></i></Link>
                         </div>
                     </div>
                 </div>
-                <div class="screen__background">
-                    <span class="screen__background__shape screen__background__shape4"></span>
-                    <span class="screen__background__shape screen__background__shape3"></span>
-                    <span class="screen__background__shape screen__background__shape2"></span>
-                    <span class="screen__background__shape screen__background__shape1"></span>
+                <div className="screen__background">
+                    <span className="screen__background__shape screen__background__shape4"></span>
+                    <span className="screen__background__shape screen__background__shape3"></span>
+                    <span className="screen__background__shape screen__background__shape2"></span>
+                    <span className="screen__background__shape screen__background__shape1"></span>
                 </div>
             </div>
         </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { login } from '../../features/User/userSlice';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export const Login = () => {
     const dispatch = useDispatch();
@@ -31,7 +32,7 @@ export const Login = () => {
                         </div>
                         <div className="login__field">
                             <i className="login__icon fas fa-lock"></i>
-                            <input type="password" name="password" className="login__input" placeholder="Password" />
+                            <input type="password" name="password" className="login__input" placeholder="Password" onChange={handlePassword} />
                         </div>
                         <button className="button login__submit" onClick={handleClick} name="submit">
                             <span className="button__text">Log In Now</span>
@@ -41,9 +42,9 @@ export const Login = () => {
                     <div className="social-login">
                         <h3>log in via</h3>
                         <div clclassNameass="social-icons">
-                            <a href="#" className="social-login__icon fab fa-instagram"></a>
-                            <a href="#" className="social-login__icon fab fa-facebook"></a>
-                            <a href="#" className="social-login__icon fab fa-twitter"></a>
+                            <Link to='#'><i className='social-login__icon fab fa-instagram'></i></Link>
+                            <Link to='#'><i className='social-login__icon fab fa-facebook'></i></Link>
+                            <Link to='#'><i className='social-login__icon fab fa-twitter'></i></Link>
                         </div>
                     </div>
                 </div>
