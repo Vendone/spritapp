@@ -8,7 +8,8 @@ export const loadCars = createAsyncThunk(
     'cars/loadCars',
     async () => {
         try {
-            const response = await fetch(CARS_URL);
+            const id = localStorage.getItem('user');
+            const response = await fetch(CARS_URL + id);
             const jsonResponse = await response.json();
             return jsonResponse;
         } catch (err) {

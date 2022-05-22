@@ -1,5 +1,4 @@
 import React from 'react';
-import { UserCard } from '../../components/UserCard/UserCard';
 import { CarCard } from '../../components/CarCard/CarCard';
 import { GasstationCard } from '../gasStationCard/GasStationCard';
 import { RoutesCard } from '../RoutesCard/RoutesCard';
@@ -11,7 +10,6 @@ export const Dashboard = () => {
         <div className='dashboard'>
             <h1>Dashboard</h1>
             <div className='dashboard'>
-                <UserCard />
                 <CarCard />
                 <GasstationCard />
                 <RoutesCard />

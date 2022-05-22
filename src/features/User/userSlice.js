@@ -20,12 +20,13 @@ export const postUser = createAsyncThunk(
     'users/postUser',
     async (body) => {
         try {
-            await axios.post(USER_URL, body);
+            await axios.post(USER_URL + 'register', body);
         } catch (err) {
-            return err.message;
+            return err.response;
         }
     }
 )
+
 // Daten ändern
 export const updateAsyncUser = createAsyncThunk(
     'users/updateAsyncUser',
@@ -45,6 +46,20 @@ export const deleteAsyncUser = createAsyncThunk(
             await axios.delete(USER_URL + '/' + id)
         } catch (err) {
             return err.message;
+        }
+    }
+)
+
+//Login
+export const login = createAsyncThunk(
+    'users/login',
+    async (body) => {
+        try {
+            const user = await axios.post(USER_URL + 'login', body);
+            localStorage.setItem('user', user.data.passport.user);
+            console.log(user.data.passport.user);
+        } catch (err) {
+            return err.response;
         }
     }
 )

@@ -126,3 +126,42 @@ h5,
   cursor: pointer;
   background-color: #2e53a3;
 }
+
+.logincard {
+  border-radius: 10px;
+  width: 90%;
+  min-height: 500px;
+  box-shadow: 2px 2px 16px -5px rgba(0, 0, 0, 0.57);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: flex-start;
+}
+
+.logincard label {
+  color: #666666;
+  font-weight: bold;
+  font-size: 0.75em;
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: auto;
+  margin: 5px;
+  padding-right: 5px;
+}
+
+.logincard input {
+  display: block;
+  align-self: auto;
+  padding: 2px;
+  margin-top: 2px;
+
+}
+
+.register {
+  margin: 5px;
+
+}
