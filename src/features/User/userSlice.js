@@ -64,6 +64,15 @@ export const login = createAsyncThunk(
     }
 )
 
+//Logout
+export const logout = createAsyncThunk(
+    'users/logout',
+    async () => {
+        await fetch(USER_URL + 'logout');
+        localStorage.removeItem('user');
+    })
+
+
 // Slice Object
 const options = {
     name: 'user',
