@@ -10,12 +10,14 @@ import { TankStops } from '../Tankstops/TankStops';
 import { UpdateRoute } from '../UpdateRoutes/UpdateRoutes';
 import { Register } from '../Register/Register';
 import { Login } from '../Login/Login';
+import { Logout } from '../Logout/Logout';
 
 export default function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
+          {(!localStorage.getItem('user')) ? <Route path="/*" element={<Login />} /> : <Route path="/*" element={<Dashboard />} />}
           <Route path="/*" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/gasstations" element={<GasStations />} />
@@ -25,6 +27,7 @@ export default function App() {
           <Route path="/addRoute" element={<AddRoutes />} />
           <Route path="/updateRoute/:id" element={<UpdateRoute />} />
           <Route path="/routes" element={<AllRoutes />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>

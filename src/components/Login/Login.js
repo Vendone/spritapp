@@ -21,14 +21,38 @@ export const Login = () => {
         dispatch(login(body));
     }
     return (
-        <div className='logincard'>
-            <h1>Login</h1>
-            <div className='register'>
-                <label htmlFor="email">Email</label>
-                <input type="email" name="email" placeholder="Email" onChange={handleEmail} />
-                <label htmlFor="password">Passwort</label>
-                <input type="password" name="password" placeholder="Password" onChange={handlePassword} />
-                <input type="submit" onClick={handleClick} name="submit" />
+        <div className="container">
+            <div className="screen">
+                <div className="screen__content">
+                    <div className="login">
+                        <div className="login__field">
+                            <i className="login__icon fas fa-user"></i>
+                            <input type="text" name="email" className="login__input" placeholder="Email" onChange={handleEmail} />
+                        </div>
+                        <div className="login__field">
+                            <i className="login__icon fas fa-lock"></i>
+                            <input type="password" name="password" className="login__input" placeholder="Password" />
+                        </div>
+                        <button className="button login__submit" onClick={handleClick} name="submit">
+                            <span className="button__text">Log In Now</span>
+                            <i className="button__icon fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div className="social-login">
+                        <h3>log in via</h3>
+                        <div clclassNameass="social-icons">
+                            <a href="#" className="social-login__icon fab fa-instagram"></a>
+                            <a href="#" className="social-login__icon fab fa-facebook"></a>
+                            <a href="#" className="social-login__icon fab fa-twitter"></a>
+                        </div>
+                    </div>
+                </div>
+                <div className="screen__background">
+                    <span className="screen__background__shape screen__background__shape4"></span>
+                    <span className="screen__background__shape screen__background__shape3"></span>
+                    <span className="screen__background__shape screen__background__shape2"></span>
+                    <span className="screen__background__shape screen__background__shape1"></span>
+                </div>
             </div>
         </div>
     );

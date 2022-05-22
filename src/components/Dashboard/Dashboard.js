@@ -3,6 +3,7 @@ import { CarCard } from '../../components/CarCard/CarCard';
 import { GasstationCard } from '../gasStationCard/GasStationCard';
 import { RoutesCard } from '../RoutesCard/RoutesCard';
 import { TankStopCard } from '../TankStopCard/TankStopCard';
+import { Logout } from '../Logout/Logout';
 
 
 export const Dashboard = () => {
@@ -14,6 +15,7 @@ export const Dashboard = () => {
                 <GasstationCard />
                 <RoutesCard />
                 <TankStopCard />
+                <Logout />
             </div>
         </div>
     );
