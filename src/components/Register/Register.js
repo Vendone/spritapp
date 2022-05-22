@@ -41,20 +41,50 @@ export const Register = () => {
     }
 
     return (
-        <div className='logincard'>
-            <h1>Sign-In</h1>
-            <div className='register'>
-                <label htmlFor="first_name">Vorname</label>
-                <input type="text" name="first_name" placeholder="Vorname eingeben" value={firstName} onChange={handleFirstName} />
-                <label htmlFor="last_name">Nachname</label>
-                <input type="text" name="last_name" placeholder="Nachname eingeben" value={lastName} onChange={handleLastName} />
-                <label htmlFor="email">Email</label>
-                <input type="email" name="email" placeholder="Email eingeben" value={email} onChange={handleEmail} />
-                <label htmlFor="password">Passwort</label>
-                <input type="password" name="password" placeholder="Passwort eingeben" value={password} onChange={handlePassword} />
-                <label htmlFor="confirm_password">Passwort wiederholen</label>
-                <input type="password" name="confirm_password" placeholder="Passwort wiederholen" value={confirmPassword} onChange={handleConfirmPassword} />
-                <input type="submit" onClick={handleClick} name="submit" />
+        <div class="container">
+            <div class="screen">
+                <div class="screen__content">
+                    <div class="login">
+                        <div class="login__field">
+                            <i class="login__icon fas fa-user"></i>
+                            <input type="text" name="first_name" class="login__input" placeholder="Vorname" value={firstName} onChange={handleFirstName} />
+                        </div>
+                        <div class="login__field">
+                            <i class="login__icon fas fa-user"></i>
+                            <input type="text" name="last_name" class="login__input" placeholder="Nachname" value={lastName} onChange={handleLastName} />
+                        </div>
+                        <div class="login__field">
+                            <i class="login__icon fas fa-envelope"></i>
+                            <input type="email" name="email" class="login__input" placeholder="Email" value={email} onChange={handleEmail} />
+                        </div>
+                        <div class="login__field">
+                            <i class="login__icon fas fa-lock"></i>
+                            <input type="password" name="password" class="login__input" placeholder="Passwort" value={password} onChange={handlePassword} />
+                        </div>
+                        <div class="login__field">
+                            <i class="login__icon fas fa-lock"></i>
+                            <input type="password" name="confirm_password" class="login__input" placeholder="Passwort wiederholen" value={confirmPassword} onChange={handleConfirmPassword} />
+                        </div>
+                        <button class="button login__submit" onClick={handleClick}>
+                            <span class="button__text">Register Now</span>
+                            <i class="button__icon fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="social-login">
+                        <h3>log in via</h3>
+                        <div class="social-icons">
+                            <a href="#" class="social-login__icon fab fa-instagram"></a>
+                            <a href="#" class="social-login__icon fab fa-facebook"></a>
+                            <a href="#" class="social-login__icon fab fa-twitter"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="screen__background">
+                    <span class="screen__background__shape screen__background__shape4"></span>
+                    <span class="screen__background__shape screen__background__shape3"></span>
+                    <span class="screen__background__shape screen__background__shape2"></span>
+                    <span class="screen__background__shape screen__background__shape1"></span>
+                </div>
             </div>
         </div>
     );
