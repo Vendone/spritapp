@@ -199,6 +199,14 @@ body {
   border-radius: 60px;
 }
 
+.screen__background__shape5 {
+  height: 620px;
+  width: 520px;
+  background: #FFF;
+  transform: rotate(0deg);
+  border-radius: 0 72px 0 0;
+}
+
 .login {
   width: 320px;
   padding: 30px;
