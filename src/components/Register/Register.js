@@ -43,6 +43,7 @@ export const Register = () => {
             <div className="screen">
                 <div className="screen__content">
                     <div className="login">
+                        <h1>Register</h1>
                         <div className="login__field">
                             <i className="login__icon fas fa-user"></i>
                             <input type="text" name="first_name" className="login__input" placeholder="Vorname" value={firstName} onChange={handleFirstName} />
