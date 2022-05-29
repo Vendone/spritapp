@@ -8,7 +8,6 @@ import { Cars } from '../Cars/Cars';
 import { GasStations } from '../GasStation/GasStation';
 import { TankStops } from '../Tankstops/TankStops';
 import { UpdateRoute } from '../UpdateRoutes/UpdateRoutes';
-import { Register } from '../Register/Register';
 import { Login } from '../Login/Login';
 import { Logout } from '../Logout/Logout';
 
@@ -28,7 +27,6 @@ export default function App() {
           <Route path="/updateRoute/:id" element={<UpdateRoute />} />
           <Route path="/routes" element={<AllRoutes />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
     </div>
