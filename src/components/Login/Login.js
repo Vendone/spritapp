@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { login } from '../../features/User/userSlice';
-import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+
 
 export const Login = () => {
     useEffect(() => {
