@@ -7,7 +7,7 @@ export const loadUser = createAsyncThunk(
     'users/loadUser',
     async () => {
         try {
-            const response = await fetch(USER_URL);
+            const response = await fetch('http://localhost:4001/auth/user');
             const jsonResponse = await response.json();
             return jsonResponse;
         } catch (err) {
@@ -56,7 +56,7 @@ export const login = createAsyncThunk(
     async (body) => {
         try {
             const user = await axios.post(USER_URL + 'login', body);
-            localStorage.setItem('user', user.data.passport.user);
+            sessionStorage.setItem('user', user.data.passport.user);
             console.log(user.data.passport.user);
         } catch (err) {
             return err.response;
@@ -68,8 +68,7 @@ export const login = createAsyncThunk(
 export const logout = createAsyncThunk(
     'users/logout',
     async () => {
-        await fetch(USER_URL + 'logout');
-        localStorage.removeItem('user');
+        await fetch('http://192.168.0.233:4001/auth/logout', { method: 'POST' });
     })
 
 

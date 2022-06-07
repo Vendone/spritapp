@@ -8,7 +8,7 @@ export const loadRoute = createAsyncThunk(
     'routes/loadRoute',
     async () => {
         try {
-            const response = await fetch(ROUTES_URL);
+            const response = await fetch(ROUTES_URL, { method: 'get', credentials: 'include' });
             const jsonResponse = await response.json();
             return jsonResponse;
         } catch (err) {
