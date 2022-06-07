@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import { CarCard } from '../../components/CarCard/CarCard';
 import { GasstationCard } from '../gasStationCard/GasStationCard';
 import { RoutesCard } from '../RoutesCard/RoutesCard';
 import { TankStopCard } from '../TankStopCard/TankStopCard';
 import { Logout } from '../Logout/Logout';
+import { loadUser, selectUsers } from "../../features/User/userSlice";
 
 export const Dashboard = () => {
+    const store = useSelector(selectUsers);
+    const dispatch = useDispatch();
+
+    /*useEffect(() => {
+        dispatch(loadUser());
+    }, [dispatch])*/
+
     return (
         <div className="container">
             <div className="screen">
