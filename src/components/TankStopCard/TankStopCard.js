@@ -15,7 +15,7 @@ export const TankStopCard = () => {
         <div className="card">
             <h3>Tankstop Card</h3>
             {(store.isLoading) ? <div className="loader"></div> : (store.value[0] === 'Failed to fetch' || store.value[0] === 'Unexpected token < in JSON at position 0') ? <div className="fail">x</div> :
-                (store.value.length <= 0) ? <p>Keine Einträge vorhanden. Bitte ersten Eintrag hinzufügen</p> : store.value[0].map((tankstop) => (
+                (store.value.length <= 0) ? <p>Keine Einträge vorhanden. Bitte ersten Eintrag hinzufügen</p> : store.value[0].results.map((tankstop) => (
                     <div className="entry" key={tankstop.id}>
                         <div className="row">
                             <div className="left"></div>
