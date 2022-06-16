@@ -1,15 +1,10 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { loadGasstation, selectGasstations } from "../../features/GasStations/gasStationSlice";
+import { selectGasstations } from "../../features/GasStations/gasStationSlice";
 
 export const GasstationCard = () => {
     const store = useSelector(selectGasstations);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(loadGasstation());
-    }, [dispatch])
 
     return (
         <div className="card">
