@@ -1,15 +1,10 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { loadCars, selectAllCars } from "../../features/Cars/carsSlice";
+import React from "react";
+import { useSelector } from "react-redux";
+import { selectAllCars } from "../../features/Cars/carsSlice";
 import { Link } from "react-router-dom";
 
 export const CarCard = () => {
     const store = useSelector(selectAllCars);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(loadCars());
-    }, [dispatch])
 
     return (
         <div className="card">

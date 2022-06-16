@@ -1,15 +1,10 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { loadRoute, selectAllRoutes } from "../../features/Routes/routeSlice";
+import React from "react";
+import { useSelector } from "react-redux";
+import { selectAllRoutes } from "../../features/Routes/routeSlice";
 import { Link } from "react-router-dom";
 
 export const RoutesCard = () => {
     const store = useSelector(selectAllRoutes);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(loadRoute());
-    }, [dispatch])
 
     return (
         <div className="card">
