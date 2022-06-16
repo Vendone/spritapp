@@ -16,7 +16,7 @@ export default function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          {(!localStorage.getItem('user')) ? <Route path="/*" element={<Login />} /> : <Route path="/*" element={<Dashboard />} />}
+          <Route path="/*" element={<Dashboard />} />
           <Route path="/*" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/gasstations" element={<GasStations />} />
