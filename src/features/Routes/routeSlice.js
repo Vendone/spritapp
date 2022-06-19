@@ -16,6 +16,18 @@ export const loadRoute = createAsyncThunk(
         }
     })
 
+export const loadAvgFuel = createAsyncThunk(
+    'routes/loadAvgFuel',
+    async () => {
+        try {
+            const response = await fetch(ROUTES_URL + '/avgFuel/1');
+            const jsonResponse = await response.json();
+            return jsonResponse;
+        } catch (err) {
+            return err.message;
+        }
+    })
+
 //Daten senden
 export const postRoute = createAsyncThunk(
     'routes/postRoute',
@@ -54,6 +66,7 @@ const options = {
     name: 'routes',
     initialState: {
         value: [],
+        avg: 0,
         isLoading: false,
         hasError: false
     },
@@ -91,6 +104,19 @@ const options = {
                 state.hasError = false;
             })
             .addCase(loadRoute.rejected, (state, action) => {
+                state.isLoading = false;
+                state.hasError = true;
+            })
+            .addCase(loadAvgFuel.pending, (state, action) => {
+                state.isLoading = true;
+                state.hasError = false;
+            })
+            .addCase(loadAvgFuel.fulfilled, (state, action) => {
+                state.avg = action.payload;
+                state.isLoading = false;
+                state.hasError = false;
+            })
+            .addCase(loadAvgFuel.rejected, (state, action) => {
                 state.isLoading = false;
                 state.hasError = true;
             })

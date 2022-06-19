@@ -2,9 +2,8 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { loadCars, selectAllCars } from "../../features/Cars/carsSlice";
 import { loadGasstation, selectGasstations } from "../../features/GasStations/gasStationSlice";
-import { loadRoute, selectAllRoutes } from '../../features/Routes/routeSlice';
+import { loadRoute, loadAvgFuel, selectAllRoutes } from '../../features/Routes/routeSlice';
 import { loadTankstop, selectTankstops } from "../../features/TankStops/tankStopsSlice";
-import { Logout } from '../Logout/Logout';
 
 export const Dashboard = () => {
     const gasstationStore = useSelector(selectGasstations);
@@ -22,6 +21,7 @@ export const Dashboard = () => {
         }
         if (!routeStore.value[0]) {
             dispatch(loadRoute());
+            dispatch(loadAvgFuel());
         }
         if (!tankstopStore.value[0]) {
             dispatch(loadTankstop());
@@ -35,9 +35,17 @@ export const Dashboard = () => {
                 <div className="screen__content">
                     <div className="screen__content">
                         <h1>Dashboard</h1>
-
                         <div className="content__field">
-                            <Logout />
+                            <p>gesamt gefahrene Kilometer</p>
+                            <p>{routeStore.value[0] ? routeStore.value[0].results[routeStore.value[0].results.length - 1].mileage_stop - routeStore.value[0].results[0].mileage_start : 0}</p>
+                        </div>
+                        <div className="content__field">
+                            <p>Anzahl eingetragener Routen</p>
+                            <p>{routeStore.value[0] ? routeStore.value[0].results.length : 0}</p>
+                        </div>
+                        <div className="content__field">
+                            <p>Durchschnitts Verbrauch</p>
+                            <p>{routeStore.avg[0] ? routeStore.avg[0].avg + ' L/100km' : 0}</p>
                         </div>
                     </div>
                 </div>
