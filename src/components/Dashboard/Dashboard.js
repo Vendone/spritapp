@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { CarCard } from '../../components/CarCard/CarCard';
 import { loadCars, selectAllCars } from "../../features/Cars/carsSlice";
-import { GasstationCard } from '../gasStationCard/GasStationCard';
 import { loadGasstation, selectGasstations } from "../../features/GasStations/gasStationSlice";
-import { RoutesCard } from '../RoutesCard/RoutesCard';
 import { loadRoute, selectAllRoutes } from '../../features/Routes/routeSlice';
-import { TankStopCard } from '../TankStopCard/TankStopCard';
 import { loadTankstop, selectTankstops } from "../../features/TankStops/tankStopsSlice";
 import { Logout } from '../Logout/Logout';
 
@@ -39,18 +35,7 @@ export const Dashboard = () => {
                 <div className="screen__content">
                     <div className="screen__content">
                         <h1>Dashboard</h1>
-                        <div className="content__field">
-                            <CarCard />
-                        </div>
-                        <div className="content__field">
-                            <GasstationCard />
-                        </div>
-                        <div className="content__field">
-                            <RoutesCard />
-                        </div>
-                        <div className="content__field">
-                            <TankStopCard />
-                        </div>
+
                         <div className="content__field">
                             <Logout />
                         </div>
