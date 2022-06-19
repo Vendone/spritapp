@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 //Daten laden
-const CARS_URL = 'http://192.168.0.233:4001/cars/';
+const CARS_URL = process.env.REACT_APP_SERVER_URL + '/cars/';
 
 export const loadCars = createAsyncThunk(
     'cars/loadCars',

@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const GASSTATION_URL = 'http://192.168.0.233:4001/gasstations/';
+const GASSTATION_URL = process.env.REACT_APP_SERVER_URL + '/gasstations/';
 
 export const loadGasstation = createAsyncThunk(
     'gasstations/loadGasstation',

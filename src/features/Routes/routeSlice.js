@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 //Daten laden
-const ROUTES_URL = 'http://192.168.0.233:4001/routes/';
+const ROUTES_URL = process.env.REACT_APP_SERVER_URL + '/routes/';
 
 export const loadRoute = createAsyncThunk(
     'routes/loadRoute',

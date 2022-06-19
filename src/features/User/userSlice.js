@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const USER_URL = 'http://192.168.0.233:4001/users/';
+const USER_URL = process.env.REACT_APP_SERVER_URL + '/users/';
 
 export const loadUser = createAsyncThunk(
     'users/loadUser',
     async () => {
         try {
-            const response = await fetch('http://localhost:4001/auth/user');
+            const response = await fetch(process.env.REACT_APP_SERVER_URL + '/auth/user');
             const jsonResponse = await response.json();
             return jsonResponse;
         } catch (err) {
@@ -68,7 +68,7 @@ export const login = createAsyncThunk(
 export const logout = createAsyncThunk(
     'users/logout',
     async () => {
-        await fetch('http://192.168.0.233:4001/auth/logout', { method: 'POST' });
+        await fetch(process.env.REACT_APP_SERVER_URL + '/auth/logout', { method: 'POST' });
     })
 
 

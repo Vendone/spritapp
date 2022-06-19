@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const TANKSTOPS_URL = 'http://192.168.0.233:4001/tankstops/';
+const TANKSTOPS_URL = process.env.REACT_APP_SERVER_URL + '/tankstops/';
 
 export const loadTankstop = createAsyncThunk(
     'tankstops/loadTankstops',
