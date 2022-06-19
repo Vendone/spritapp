@@ -36,6 +36,10 @@ export const Dashboard = () => {
                     <div className="screen__content">
                         <h1>Dashboard</h1>
                         <div className="content__field">
+                            <p>Fahrzeug</p>
+                            <p>{carStore.value[0] ? carStore.value[0].results[0].license_plate : 0}</p>
+                        </div>
+                        <div className="content__field">
                             <p>gesamt gefahrene Kilometer</p>
                             <p>{routeStore.value[0] ? routeStore.value[0].results[routeStore.value[0].results.length - 1].mileage_stop - routeStore.value[0].results[0].mileage_start : 0}</p>
                         </div>
@@ -46,6 +50,14 @@ export const Dashboard = () => {
                         <div className="content__field">
                             <p>Durchschnitts Verbrauch</p>
                             <p>{routeStore.avg[0] ? routeStore.avg[0].avg + ' L/100km' : 0}</p>
+                        </div>
+                        <div className="content__field">
+                            <p>Kosten diesen Monat</p>
+                            <p>{0}</p>
+                        </div>
+                        <div className="content__field">
+                            <p>Kosten gesamt</p>
+                            <p>{0}</p>
                         </div>
                     </div>
                 </div>
