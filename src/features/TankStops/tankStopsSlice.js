@@ -7,7 +7,7 @@ export const loadTankstop = createAsyncThunk(
     'tankstops/loadTankstops',
     async () => {
         try {
-            const response = await fetch(TANKSTOPS_URL, { method: 'GET', credentials: 'include' });
+            const response = await fetch(TANKSTOPS_URL);
             const jsonResponse = await response.json();
             return jsonResponse;
         } catch (err) {
