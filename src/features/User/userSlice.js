@@ -27,6 +27,7 @@ export const postUser = createAsyncThunk(
     }
 )
 
+
 // Daten ändern
 export const updateAsyncUser = createAsyncThunk(
     'users/updateAsyncUser',
