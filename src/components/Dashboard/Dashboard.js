@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { loadCars, selectAllCars } from "../../features/Cars/carsSlice";
 import { loadGasstation, selectGasstations } from "../../features/GasStations/gasStationSlice";
@@ -11,6 +12,7 @@ export const Dashboard = () => {
     const routeStore = useSelector(selectAllRoutes);
     const tankstopStore = useSelector(selectTankstops);
     const dispatch = useDispatch();
+    let navigate = useNavigate();
 
     useEffect(() => {
         if (!gasstationStore.value[0]) {
@@ -26,8 +28,15 @@ export const Dashboard = () => {
         if (!tankstopStore.value[0]) {
             dispatch(loadTankstop());
         }
-
     }, [dispatch, gasstationStore.value, carStore.value, routeStore.value, tankstopStore.value])
+
+    const handleCar = () => {
+        navigate('/cars');
+    }
+
+    const handleNewCar = () => {
+        navigate('/addcar');
+    }
 
     return (
         <div className="container">
@@ -36,8 +45,10 @@ export const Dashboard = () => {
                     <div className="screen__content">
                         <h1>Dashboard</h1>
                         <div className="content__field">
-                            <p>Fahrzeug</p>
-                            <p>{carStore.value[0] ? carStore.value[0].results[0].license_plate : 0}</p>
+                            <p><strong>Fahrzeug</strong></p>
+                            <p>{carStore.value[0] ? carStore.value[0].results[0].license_plate : 'kein Fahrzeug vorhanden'}</p>
+                            {carStore.value[0] ? <button className="fa-solid fas fa-car dashbutton" onClick={handleCar}></button> : <button className="fa-solid fas fa-plus dashbutton" onClick={handleNewCar}></button>}
+
                         </div>
                         <div className="content__field">
                             <p>gesamt gefahrene Kilometer</p>
@@ -46,18 +57,24 @@ export const Dashboard = () => {
                         <div className="content__field">
                             <p>Anzahl eingetragener Routen</p>
                             <p>{routeStore.value[0] ? routeStore.value[0].results.length : 0}</p>
+                            <button className="fa-solid fas fa-route dashbutton"></button>
                         </div>
                         <div className="content__field">
                             <p>Durchschnitts Verbrauch</p>
                             <p>{routeStore.avg[0] ? routeStore.avg[0].avg + ' L/100km' : 0}</p>
                         </div>
                         <div className="content__field">
+                            <p>letzte Tankrechnung</p>
+                            <p><strong>muss noch eingebaut werden</strong></p>
+                            <button className="fa-solid fas fa-gas-pump dashbutton"></button>
+                        </div>
+                        <div className="content__field">
                             <p>Kosten diesen Monat</p>
-                            <p>{0}</p>
+                            <p><strong>muss noch eingebaut werden</strong></p>
                         </div>
                         <div className="content__field">
                             <p>Kosten gesamt</p>
-                            <p>{0}</p>
+                            <p><strong>muss noch eingebaut werden</strong></p>
                         </div>
                     </div>
                 </div>
