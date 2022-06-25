@@ -141,7 +141,7 @@ const options = {
 
 export const carsSlice = createSlice(options);
 
-export const selectAllCars = (state) => state.cars;
+export const selectAllCars = (state) => state.cars.value;
 export const carsError = (state) => state.cars.hasError;
 
 export const { addCar, updateCar, deleteCar } = carsSlice.actions;

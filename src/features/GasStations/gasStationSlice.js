@@ -133,6 +133,6 @@ const options = {
 }
 
 export const gasstationsSlice = createSlice(options);
-export const selectGasstations = (state) => state.gasstations;
+export const selectGasstations = (state) => state.gasstations.value;
 export const { addGasstation, updateGasstation, deleteGasstation } = gasstationsSlice.actions;
 export default gasstationsSlice.reducer;

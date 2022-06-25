@@ -158,6 +158,6 @@ const options = {
 }
 
 export const usersSlice = createSlice(options);
-export const selectUsers = (state) => state.user;
+export const selectUsers = (state) => state.user.value;
 export const { addUser, updateUser, deleteUser } = usersSlice.actions;
 export default usersSlice.reducer;

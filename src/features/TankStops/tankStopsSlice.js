@@ -139,6 +139,6 @@ const options = {
 }
 
 export const tankstopsSlice = createSlice(options);
-export const selectTankstops = (state) => state.tankstops;
+export const selectTankstops = (state) => state.tankstops.value;
 export const { addTankstop, updateTankstop, deleteTankstop } = tankstopsSlice.actions;
 export default tankstopsSlice.reducer;

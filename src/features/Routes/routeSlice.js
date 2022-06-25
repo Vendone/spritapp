@@ -134,7 +134,7 @@ const options = {
 
 export const routeSlice = createSlice(options);
 
-export const selectAllRoutes = (state) => state.routes;
+export const selectAllRoutes = (state) => state.routes.value;
 export const routesError = (state) => state.routes.hasError;
 
 export const { addRoute, updateRoute, deleteRoute } = routeSlice.actions;

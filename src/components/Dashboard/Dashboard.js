@@ -15,20 +15,20 @@ export const Dashboard = () => {
     let navigate = useNavigate();
 
     useEffect(() => {
-        if (!gasstationStore.value[0]) {
+        if (!gasstationStore) {
             dispatch(loadGasstation());
         }
-        if (!carStore.value[0]) {
+        if (!carStore) {
             dispatch(loadCars());
         }
-        if (!routeStore.value[0]) {
+        if (!routeStore) {
             dispatch(loadRoute());
             dispatch(loadAvgFuel());
         }
-        if (!tankstopStore.value[0]) {
+        if (!tankstopStore) {
             dispatch(loadTankstop());
         }
-    }, [dispatch, gasstationStore.value, carStore.value, routeStore.value, tankstopStore.value])
+    }, [dispatch, gasstationStore, carStore, routeStore, tankstopStore])
 
     const handleCar = () => {
         navigate('/cars');
@@ -45,23 +45,24 @@ export const Dashboard = () => {
                     <div className="screen__content">
                         <h1>Dashboard</h1>
                         <div className="content__field">
-                            <p><strong>Fahrzeug</strong></p>
-                            <p>{carStore.value[0] ? carStore.value[0].results[0].license_plate : 'kein Fahrzeug vorhanden'}</p>
-                            {carStore.value[0] ? <button className="fa-solid fas fa-car dashbutton" onClick={handleCar}></button> : <button className="fa-solid fas fa-plus dashbutton" onClick={handleNewCar}></button>}
+                            <p><strong>Fahrzeuge</strong></p>
+                            <p><strong>muss noch eingebaut werden</strong></p>
+                            <button className="fa-solid fas fa-car dashbutton" onClick={handleCar}></button>
+                            <button className="fa-solid fas fa-plus dashbutton" onClick={handleNewCar}></button>
 
                         </div>
                         <div className="content__field">
                             <p>gesamt gefahrene Kilometer</p>
-                            <p>{routeStore.value[0] ? routeStore.value[0].results[routeStore.value[0].results.length - 1].mileage_stop - routeStore.value[0].results[0].mileage_start : 0}</p>
+                            <p><strong>muss noch eingebaut werden</strong></p>
                         </div>
                         <div className="content__field">
                             <p>Anzahl eingetragener Routen</p>
-                            <p>{routeStore.value[0] ? routeStore.value[0].results.length : 0}</p>
+                            <p><strong>muss noch eingebaut werden</strong></p>
                             <button className="fa-solid fas fa-route dashbutton"></button>
                         </div>
                         <div className="content__field">
                             <p>Durchschnitts Verbrauch</p>
-                            <p>{routeStore.avg[0] ? routeStore.avg[0].avg + ' L/100km' : 0}</p>
+                            <p><strong>muss noch eingebaut werden</strong></p>
                         </div>
                         <div className="content__field">
                             <p>letzte Tankrechnung</p>
