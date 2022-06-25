@@ -1,10 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { selectAllCars } from "../../features/Cars/carsSlice";
 
 export const Cars = () => {
     const carStore = useSelector(selectAllCars);
+    let navigate = useNavigate();
+
+    const handleAdd = () => {
+        navigate('/addcar');
+    }
 
     return (
         <div className="container">
@@ -31,7 +36,7 @@ export const Cars = () => {
                                 <button className="fa-solid fas fa-pen dashbutton"></button>
                             </div>
                         )}
-                        <button className="fa-solid fas fa-plus dashbutton"></button>
+                        <button className="fa-solid fas fa-plus dashbutton" onClick={handleAdd}></button>
                     </div>
                 </div>
                 <div className="screen__background">

@@ -2,14 +2,14 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 //Daten laden
-const CARS_URL = process.env.REACT_APP_SERVER_URL + '/cars/';
+const CARS_URL = process.env.REACT_APP_SERVER_URL + '/cars';
 
 export const loadCars = createAsyncThunk(
     'cars/loadCars',
     async () => {
         try {
             const id = 1;
-            const response = await fetch(CARS_URL + id);
+            const response = await fetch(CARS_URL + '/' + id);
             const jsonResponse = await response.json();
             return jsonResponse;
         } catch (err) {
@@ -89,7 +89,7 @@ const options = {
                 state.hasError = false;
             })
             .addCase(loadCars.fulfilled, (state, action) => {
-                state.value.push(action.payload);
+                state.value = action.payload.results;
                 state.isLoading = false;
                 state.hasError = false;
             })

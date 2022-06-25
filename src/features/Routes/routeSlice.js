@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 //Daten laden
-const ROUTES_URL = process.env.REACT_APP_SERVER_URL + '/routes/';
+const ROUTES_URL = process.env.REACT_APP_SERVER_URL + '/routes';
 
 export const loadRoute = createAsyncThunk(
     'routes/loadRoute',
@@ -99,7 +99,7 @@ const options = {
                 state.hasError = false;
             })
             .addCase(loadRoute.fulfilled, (state, action) => {
-                state.value.push(action.payload);
+                state.value = action.payload.results;
                 state.isLoading = false;
                 state.hasError = false;
             })

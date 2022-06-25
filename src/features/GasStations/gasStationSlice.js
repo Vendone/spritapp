@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const GASSTATION_URL = process.env.REACT_APP_SERVER_URL + '/gasstations/';
+const GASSTATION_URL = process.env.REACT_APP_SERVER_URL + '/gasstations';
 
 export const loadGasstation = createAsyncThunk(
     'gasstations/loadGasstation',
@@ -82,7 +82,7 @@ const options = {
                 state.hasError = false;
             })
             .addCase(loadGasstation.fulfilled, (state, action) => {
-                state.value.push(action.payload);
+                state.value = action.payload.results;
                 state.isLoading = false;
                 state.hasError = false;
             })
