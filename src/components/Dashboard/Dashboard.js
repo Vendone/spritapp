@@ -3,13 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { loadCars, selectAllCars } from "../../features/Cars/carsSlice";
 import { loadGasstation, selectGasstations } from "../../features/GasStations/gasStationSlice";
-import { loadRoute, loadAvgFuel, selectAllRoutes } from '../../features/Routes/routeSlice';
+import { loadRoute, loadAvgFuel, selectAllRoutes, selectAvg } from '../../features/Routes/routeSlice';
 import { loadTankstop, selectTankstops } from "../../features/TankStops/tankStopsSlice";
 
 export const Dashboard = () => {
     const gasstationStore = useSelector(selectGasstations);
     const carStore = useSelector(selectAllCars);
     const routeStore = useSelector(selectAllRoutes);
+    const avgStore = useSelector(selectAvg);
     const tankstopStore = useSelector(selectTankstops);
     const dispatch = useDispatch();
     let navigate = useNavigate();
@@ -53,7 +54,8 @@ export const Dashboard = () => {
                         </div>
                         <div className="content__field">
                             <p><strong>gesamt gefahrene Kilometer</strong></p>
-                            <p>{routeStore[routeStore.length - 1].mileage_stop - routeStore[0].mileage_stop}</p>
+                            <p>{!routeStore[0] ? '0' : routeStore[routeStore.length - 1].mileage_stop - routeStore[0].mileage_stop}</p>
+
                         </div>
                         <div className="content__field">
                             <p><strong>Anzahl eingetragener Routen</strong></p>
@@ -62,7 +64,7 @@ export const Dashboard = () => {
                         </div>
                         <div className="content__field">
                             <p>Durchschnitts Verbrauch</p>
-                            <p><strong>muss noch eingebaut werden</strong></p>
+                            <p>{avgStore} Liter/100km</p>
                         </div>
                         <div className="content__field">
                             <p>letzte Tankrechnung</p>
