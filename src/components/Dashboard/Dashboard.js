@@ -63,12 +63,18 @@ export const Dashboard = () => {
                             <button className="fa-solid fas fa-route dashbutton"></button>
                         </div>
                         <div className="content__field">
-                            <p>Durchschnitts Verbrauch</p>
+                            <p><strong>Durchschnitts Verbrauch</strong></p>
                             <p>{avgStore} Liter/100km</p>
                         </div>
                         <div className="content__field">
-                            <p>letzte Tankrechnung</p>
-                            <p><strong>muss noch eingebaut werden</strong></p>
+                            <p><strong>letzte Tankrechnung</strong></p>
+                            <p>Datum: {tankstopStore[0].date}</p>
+                            <p>Tankstelle: {tankstopStore[0].gasstation_id} Name muss noch ausgelesen werden</p>
+                            <p>Treibstoff: {tankstopStore[0].fuel}</p>
+                            <p>Menge: {tankstopStore[0].amount} Liter</p>
+                            <p>Preis: € {tankstopStore[0].price} </p>
+                            <p>Km-Stand: {tankstopStore[0].milage} </p>
+                            <p>Fahrzeug: {tankstopStore[0].car_id} Name muss noch ausgelesen werden</p>
                             <button className="fa-solid fas fa-gas-pump dashbutton"></button>
                         </div>
                         <div className="content__field">
