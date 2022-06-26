@@ -102,7 +102,7 @@ const options = {
                 state.hasError = false;
             })
             .addCase(postCar.fulfilled, (state, action) => {
-                state.value.push(action.payload);
+                state.value.push(action.payload.results);
                 state.isLoading = false;
                 state.hasError = false;
             })
