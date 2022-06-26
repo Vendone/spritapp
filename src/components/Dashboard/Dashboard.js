@@ -15,17 +15,17 @@ export const Dashboard = () => {
     let navigate = useNavigate();
 
     useEffect(() => {
-        if (!gasstationStore) {
+        if (!gasstationStore[0]) {
             dispatch(loadGasstation());
         }
-        if (!carStore) {
+        if (!carStore[0]) {
             dispatch(loadCars());
         }
-        if (!routeStore) {
+        if (!routeStore[0]) {
             dispatch(loadRoute());
             dispatch(loadAvgFuel());
         }
-        if (!tankstopStore) {
+        if (!tankstopStore[0]) {
             dispatch(loadTankstop());
         }
     }, [dispatch, gasstationStore, carStore, routeStore, tankstopStore])
