@@ -10,6 +10,9 @@ export const Cars = () => {
     const handleAdd = () => {
         navigate('/addcar');
     }
+    const handleHome = () => {
+        navigate('/');
+    }
 
     return (
         <div className="container">
@@ -17,7 +20,7 @@ export const Cars = () => {
                 <div className="screen__content">
                     <div className="screen__content">
                         <h1>Fahrzeuge</h1>
-                        {carStore.value[0].results.map((car) =>
+                        {carStore.map((car) =>
                             <div className="content__field" key={car.id}>
                                 <p><strong>Kennzeichen:</strong></p>
                                 <p>{car.license_plate}</p>
@@ -37,6 +40,7 @@ export const Cars = () => {
                             </div>
                         )}
                         <button className="fa-solid fas fa-plus dashbutton" onClick={handleAdd}></button>
+                        <button className="fa-solid fas fa-house-blank" onClick={handleHome}>Home</button>
                     </div>
                 </div>
                 <div className="screen__background">
