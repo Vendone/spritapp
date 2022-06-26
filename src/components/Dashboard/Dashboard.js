@@ -38,6 +38,7 @@ export const Dashboard = () => {
         navigate('/addcar');
     }
 
+
     return (
         <div className="container">
             <div className="screen">
