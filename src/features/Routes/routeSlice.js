@@ -2,13 +2,25 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 //Daten laden
-const ROUTES_URL = process.env.REACT_APP_SERVER_URL + '/routes/';
+const ROUTES_URL = process.env.REACT_APP_SERVER_URL + '/routes';
 
 export const loadRoute = createAsyncThunk(
     'routes/loadRoute',
     async () => {
         try {
             const response = await fetch(ROUTES_URL);
+            const jsonResponse = await response.json();
+            return jsonResponse;
+        } catch (err) {
+            return err.message;
+        }
+    })
+
+export const loadAvgFuel = createAsyncThunk(
+    'routes/loadAvgFuel',
+    async () => {
+        try {
+            const response = await fetch(ROUTES_URL + '/avgFuel/1');
             const jsonResponse = await response.json();
             return jsonResponse;
         } catch (err) {
@@ -54,6 +66,7 @@ const options = {
     name: 'routes',
     initialState: {
         value: [],
+        avg: 0,
         isLoading: false,
         hasError: false
     },
@@ -86,11 +99,24 @@ const options = {
                 state.hasError = false;
             })
             .addCase(loadRoute.fulfilled, (state, action) => {
-                state.value.push(action.payload);
+                state.value = action.payload.results;
                 state.isLoading = false;
                 state.hasError = false;
             })
             .addCase(loadRoute.rejected, (state, action) => {
+                state.isLoading = false;
+                state.hasError = true;
+            })
+            .addCase(loadAvgFuel.pending, (state, action) => {
+                state.isLoading = true;
+                state.hasError = false;
+            })
+            .addCase(loadAvgFuel.fulfilled, (state, action) => {
+                state.avg = action.payload[0].avg;
+                state.isLoading = false;
+                state.hasError = false;
+            })
+            .addCase(loadAvgFuel.rejected, (state, action) => {
                 state.isLoading = false;
                 state.hasError = true;
             })
@@ -108,7 +134,8 @@ const options = {
 
 export const routeSlice = createSlice(options);
 
-export const selectAllRoutes = (state) => state.routes;
+export const selectAllRoutes = (state) => state.routes.value;
+export const selectAvg = (state) => state.routes.avg;
 export const routesError = (state) => state.routes.hasError;
 
 export const { addRoute, updateRoute, deleteRoute } = routeSlice.actions;

@@ -106,15 +106,19 @@ body {
 }
 
 .dashbutton {
-  background-color: #4176e6;
+  background-color: #7C78B8;
   color: azure;
-  border-radius: 10px;
+  border-radius: 50%;
   font-weight: bold;
+  font-size: 2.5em;
+  width: 50px;
+  height: 50px;
 }
 
 .dashbutton:hover {
   cursor: pointer;
-  background-color: #2e53a3;
+  background-color: #5D54A4;
+  color: #a87ec4;
 }
 
 

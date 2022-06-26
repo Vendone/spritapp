@@ -4,6 +4,7 @@ import { User } from '../User/User';
 import { Dashboard } from '../Dashboard/Dashboard';
 import { AllRoutes } from '../Routes/Routes';
 import { AddRoutes } from '../AddRoute/AddRoute';
+import { AddCar } from '../AddCar/AddCar';
 import { Cars } from '../Cars/Cars';
 import { GasStations } from '../GasStation/GasStation';
 import { TankStops } from '../Tankstops/TankStops';
@@ -18,6 +19,7 @@ export default function App() {
         <Routes>
           <Route path="/*" element={<Dashboard />} />
           <Route path="/*" element={<Login />} />
+          <Route path="/addcar" element={<AddCar />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/gasstations" element={<GasStations />} />
           <Route path="/tankstops" element={<TankStops />} />

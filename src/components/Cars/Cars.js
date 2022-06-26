@@ -1,50 +1,56 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { selectAllCars } from "../../features/Cars/carsSlice";
 
 export const Cars = () => {
-    const store = useSelector(selectAllCars);
+    const carStore = useSelector(selectAllCars);
+    let navigate = useNavigate();
+
+    const handleAdd = () => {
+        navigate('/addcar');
+    }
+    const handleHome = () => {
+        navigate('/');
+    }
 
     return (
-        <div>
-            <h1>Cars</h1>
-            <div>
-                {store[0].map((car) =>
-                    <div className="store" key={car.id}>
-                        <div>
-                            <h5>Kennzeichen:</h5>
-                            <p>{car.license_plate}</p>
-                        </div>
-                        <div>
-                            <h5>Marke:</h5>
-                            <p>{car.brand}</p>
-                        </div>
-                        <div>
-                            <h5>Modell:</h5>
-                            <p>{car.modell}</p>
-                        </div>
-                        <div>
-                            <h5>Kraftstoff:</h5>
-                            <p>{car.fuel}</p>
-                        </div>
-                        <div>
-                            <h5>KM-Stand:</h5>
-                            <p>{car.mileage}</p>
-                        </div>
-                        <div>
-                            <h5>Baujahr:</h5>
-                            <p>{car.construction_year}</p>
-                        </div>
-                        <div>
-                            <h5>Beschreibung:</h5>
-                            <p>{car.description}</p>
-                        </div>
+        <div className="container">
+            <div className="screen">
+                <div className="screen__content">
+                    <div className="screen__content">
+                        <h1>Fahrzeuge</h1>
+                        {carStore.map((car) =>
+                            <div className="content__field" key={car.id}>
+                                <p><strong>Kennzeichen:</strong></p>
+                                <p>{car.license_plate}</p>
+                                <p><strong>Marke:</strong></p>
+                                <p>{car.brand}</p>
+                                <p><strong>Modell:</strong></p>
+                                <p>{car.modell}</p>
+                                <p><strong>Treibstoff:</strong></p>
+                                <p>{car.fuel}</p>
+                                <p><strong>KM-Stand:</strong></p>
+                                <p>{car.mileage}</p>
+                                <p><strong>Baujahr:</strong></p>
+                                <p>{car.construction_year}</p>
+                                {car.description ? <div><p><strong>Beschreibung:</strong></p>
+                                    <p>{car.description}</p></div> : ''}
+                                <button className="fa-solid fas fa-pen dashbutton"></button>
+                            </div>
+                        )}
+                        <button className="fa-solid fas fa-plus dashbutton" onClick={handleAdd}></button>
+                        <button className="fa-solid fas fa-house-blank" onClick={handleHome}>Home</button>
                     </div>
-                )
-                }
+                </div>
+                <div className="screen__background">
+                    <span className="screen__background__shape screen__background__shape1"></span>
+                    <span className="screen__background__shape screen__background__shape2"></span>
+                    <span className="screen__background__shape screen__background__shape3"></span>
+                    <span className="screen__background__shape screen__background__shape4"></span>
+                    <span className="screen__background__shape screen__background__shape5"></span>
+                </div>
             </div>
-            <Link to={`/`} className='dashbutton'>Home</Link>
         </div>
     );
 };

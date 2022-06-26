@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const TANKSTOPS_URL = process.env.REACT_APP_SERVER_URL + '/tankstops/';
+const TANKSTOPS_URL = process.env.REACT_APP_SERVER_URL + '/tankstops';
 
 export const loadTankstop = createAsyncThunk(
     'tankstops/loadTankstops',
@@ -88,7 +88,7 @@ const options = {
                 state.hasError = false;
             })
             .addCase(loadTankstop.fulfilled, (state, action) => {
-                state.value.push(action.payload);
+                state.value = action.payload.results;
                 state.isLoading = false;
                 state.hasError = false;
             })
@@ -139,6 +139,6 @@ const options = {
 }
 
 export const tankstopsSlice = createSlice(options);
-export const selectTankstops = (state) => state.tankstops;
+export const selectTankstops = (state) => state.tankstops.value;
 export const { addTankstop, updateTankstop, deleteTankstop } = tankstopsSlice.actions;
 export default tankstopsSlice.reducer;
