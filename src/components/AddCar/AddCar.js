@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postCar } from "../../features/Cars/carsSlice";
 import { useNavigate } from 'react-router-dom';
-import axios from "axios";
 
 export const AddCar = () => {
     const dispatch = useDispatch();
     let navigate = useNavigate();
-
-    const getCSRFToken = async () => {
-        const response = await axios.get(process.env.REACT_APP_SERVER_URL);
-        axios.defaults.headers.post['X-CSRF-Token'] = response.data.CSRFToken;
-    };
 
     const [license_plate, setLicense_plate] = useState('');
     const [brand, setBrand] = useState('');
@@ -60,9 +54,9 @@ export const AddCar = () => {
         navigate('/');
     };
 
-    useEffect(() => {
-        getCSRFToken()
-    }, [])
+    const handleHome = () => {
+        navigate('/');
+    }
 
     return (
         <div className="container">
@@ -70,9 +64,6 @@ export const AddCar = () => {
                 <div className="screen__content">
                     <div className="screen__content">
                         <h1>Auto hinzufügen</h1>
-                        <div className="content__field">
-                            <input type="hidden" name="_csrf" value={document.cookie} />
-                        </div>
                         <div className="content__field">
                             <input type="text" name="license_plate" id="license_plate" value={license_plate} placeholder="Kennzeichen" onChange={handleLicensePlate} required />
                         </div>
@@ -94,7 +85,8 @@ export const AddCar = () => {
                         <div className="content__field">
                             <input type="text" name="description" id="description" value={description} placeholder="Beschreibung" onChange={handleDescription} />
                         </div>
-                        <input type="submit" name="submit" className="dashbutton" onClick={handleSubmit} />
+                        <input type="submit" name="submit" className="" onClick={handleSubmit} />
+                        <button className="fa-solid fas fa-house-blank" onClick={handleHome}>Home</button>
                     </div>
                 </div>
                 <div className="screen__background">
