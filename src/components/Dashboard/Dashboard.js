@@ -47,14 +47,14 @@ export const Dashboard = () => {
                         <h1>Dashboard</h1>
                         <div className="content__field">
                             <p><strong>Fahrzeuge</strong></p>
-                            <p><strong>muss noch eingebaut werden</strong></p>
+                            <p>{carStore.length}</p>
                             <button className="fa-solid fas fa-car dashbutton" onClick={handleCar}></button>
                             <button className="fa-solid fas fa-plus dashbutton" onClick={handleNewCar}></button>
 
                         </div>
                         <div className="content__field">
-                            <p>gesamt gefahrene Kilometer</p>
-                            <p><strong>muss noch eingebaut werden</strong></p>
+                            <p><strong>gesamt gefahrene Kilometer</strong></p>
+                            <p>{routeStore[routeStore.length - 1].mileage_stop - routeStore[0].mileage_stop}</p>
                         </div>
                         <div className="content__field">
                             <p>Anzahl eingetragener Routen</p>
