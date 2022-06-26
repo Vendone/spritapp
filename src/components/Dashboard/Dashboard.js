@@ -54,7 +54,11 @@ export const Dashboard = () => {
                         </div>
                         <div className="content__field">
                             <p><strong>gesamt gefahrene Kilometer</strong></p>
-                            <p>{!routeStore[0] ? '0' : routeStore[routeStore.length - 1].mileage_stop - routeStore[0].mileage_stop}</p>
+                            <p>
+                                {
+                                    !routeStore[0] ? '0' : routeStore[routeStore.length - 1].mileage_stop - routeStore[0].mileage_stop
+                                }
+                            </p>
 
                         </div>
                         <div className="content__field">
@@ -68,13 +72,17 @@ export const Dashboard = () => {
                         </div>
                         <div className="content__field">
                             <p><strong>letzte Tankrechnung</strong></p>
-                            <p>Datum: {tankstopStore[0].date}</p>
-                            <p>Tankstelle: {tankstopStore[0].gasstation_id} Name muss noch ausgelesen werden</p>
-                            <p>Treibstoff: {tankstopStore[0].fuel}</p>
-                            <p>Menge: {tankstopStore[0].amount} Liter</p>
-                            <p>Preis: € {tankstopStore[0].price} </p>
-                            <p>Km-Stand: {tankstopStore[0].milage} </p>
-                            <p>Fahrzeug: {tankstopStore[0].car_id} Name muss noch ausgelesen werden</p>
+                            {!tankstopStore[0] ? 'keine Daten vorhanden' :
+                                <div>
+                                    <p>Datum: {tankstopStore[0].date}</p>
+                                    <p>Tankstelle: {tankstopStore[0].gasstation_id} Name muss noch ausgelesen werden</p>
+                                    <p>Treibstoff: {tankstopStore[0].fuel}</p>
+                                    <p>Menge: {tankstopStore[0].amount} Liter</p>
+                                    <p>Preis: € {tankstopStore[0].price} </p>
+                                    <p>Km-Stand: {tankstopStore[0].milage} </p>
+                                    <p>Fahrzeug: {tankstopStore[0].car_id} Name muss noch ausgelesen werden</p>
+                                </div>
+                            }
                             <button className="fa-solid fas fa-gas-pump dashbutton"></button>
                         </div>
                         <div className="content__field">
