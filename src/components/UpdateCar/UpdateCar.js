@@ -1,22 +1,24 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from 'react-router-dom';
-import { selectAllCars } from "../../features/Cars/carsSlice";
+import { selectAllCars, updateAsyncCar, loadCars } from "../../features/Cars/carsSlice";
 
 
 export const UpdateCar = () => {
     const cars = useSelector(selectAllCars);
     const dispatch = useDispatch();
     let navigate = useNavigate();
-    const [license_plate, setLicense_plate] = useState(cars[0].license_plate);
-    const [brand, setBrand] = useState(cars[0].brand);
-    const [modell, setModell] = useState(cars[0].modell);
-    const [fuel, setFuel] = useState(cars[0].fuel);
-    const [mileage, setMileage] = useState(cars[0].mileage);
-    const [construction_year, setConstruction_year] = useState(cars[0].construction_year);
-    const [description, setDescription] = useState(cars[0].description);
-    const user_id = 1;
     let { carId } = useParams();
+    const indexOfCar = cars.findIndex((car) => car.id === parseInt(carId));
+    const [id] = useState(cars[indexOfCar].id);
+    const [license_plate, setLicense_plate] = useState(cars[indexOfCar].license_plate);
+    const [brand, setBrand] = useState(cars[indexOfCar].brand);
+    const [modell, setModell] = useState(cars[indexOfCar].modell);
+    const [fuel, setFuel] = useState(cars[indexOfCar].fuel);
+    const [mileage, setMileage] = useState(cars[indexOfCar].mileage);
+    const [construction_year, setConstruction_year] = useState(cars[indexOfCar].construction_year);
+    const [description, setDescription] = useState(cars[indexOfCar].description);
+
 
     const handleLicensePlate = (e) => {
         setLicense_plate(e.target.value);
@@ -41,7 +43,8 @@ export const UpdateCar = () => {
     };
 
     const handleSubmit = () => {
-        /*const data = {
+        const data = {
+            id: id,
             license_plate: license_plate,
             brand: brand,
             modell: modell,
@@ -49,11 +52,11 @@ export const UpdateCar = () => {
             mileage: mileage,
             construction_year: construction_year,
             description: description,
-            user_id: user_id
         };
 
-        dispatch(postCar(data));
-        navigate('/');*/
+        dispatch(updateAsyncCar(data));
+        dispatch(loadCars());
+        navigate('/cars');
     };
 
     const handleHome = () => {
@@ -65,7 +68,7 @@ export const UpdateCar = () => {
             <div className="screen">
                 <div className="screen__content">
                     <div className="screen__content">
-                        <h1>Fahrzeug {carId} ändern</h1>
+                        <h1>Fahrzeug ändern</h1>
                         <div className="content__field">
                             <input type="text" name="license_plate" id="license_plate" value={license_plate} placeholder="Kennzeichen" onChange={handleLicensePlate} required />
                         </div>

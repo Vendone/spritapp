@@ -33,7 +33,7 @@ export const updateAsyncCar = createAsyncThunk(
     'cars/updateAsyncCar',
     async (data) => {
         try {
-            await axios.put(CARS_URL + data.id, data);
+            await axios.put(CARS_URL + '/' + data.id, data);
         } catch (err) {
             return err.message;
         }
@@ -128,7 +128,7 @@ const options = {
                 state.hasError = false;
             })
             .addCase(updateAsyncCar.fulfilled, (state, action) => {
-                state.value.push(action.payload);
+                //state.value.push(action.payload.results);
                 state.isLoading = false;
                 state.hasError = false;
             })

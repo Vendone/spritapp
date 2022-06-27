@@ -18,8 +18,8 @@ export default function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/*" element={<Dashboard />} />
-          <Route path="/*" element={<Login />} />
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/addcar" element={<AddCar />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/gasstations" element={<GasStations />} />
