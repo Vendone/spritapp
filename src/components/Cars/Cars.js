@@ -1,10 +1,11 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from 'react-router-dom';
-import { selectAllCars } from "../../features/Cars/carsSlice";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate } from 'react-router-dom';
+import { loadCars, selectAllCars } from "../../features/Cars/carsSlice";
 
 export const Cars = () => {
     const carStore = useSelector(selectAllCars);
+    const dispatch = useDispatch();
     let navigate = useNavigate();
 
     const handleAdd = () => {
@@ -13,6 +14,12 @@ export const Cars = () => {
     const handleHome = () => {
         navigate('/');
     }
+
+    useEffect(() => {
+        if (!carStore[0]) {
+            dispatch(loadCars());
+        }
+    }, [dispatch, carStore])
 
     return (
         <div className="container">
@@ -36,7 +43,8 @@ export const Cars = () => {
                                 <p>{car.construction_year}</p>
                                 {car.description ? <div><p><strong>Beschreibung:</strong></p>
                                     <p>{car.description}</p></div> : ''}
-                                <button className="fa-solid fas fa-pen dashbutton"></button>
+                                <Link to={`/cars/${car.id}`}><span className="fa-solid fas fa-pen dashbutton"></span></Link>
+                                <i className="fa-solid fas fa-minus dashbutton" ></i>
                             </div>
                         )}
                         <button className="fa-solid fas fa-plus dashbutton" onClick={handleAdd}></button>
@@ -51,6 +59,6 @@ export const Cars = () => {
                     <span className="screen__background__shape screen__background__shape5"></span>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
