@@ -44,7 +44,7 @@ export const deleteAsyncCar = createAsyncThunk(
     'cars/deleteCars',
     async (id) => {
         try {
-            await axios.delete(CARS_URL + '/' + id)
+            await axios.delete(CARS_URL + '/' + id);
         } catch (err) {
             return err.message;
         }

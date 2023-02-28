@@ -44,6 +44,7 @@ export const Cars = () => {
                                 {car.description ? <div><p><strong>Beschreibung:</strong></p>
                                     <p>{car.description}</p></div> : ''}
                                 <Link to={`/cars/${car.id}`}><span className="fa-solid fas fa-pen dashbutton"></span></Link>
+                                <i className="fa-solid fas fa-minus dashbutton" ></i>
                             </div>
                         )}
                         <button className="fa-solid fas fa-plus dashbutton" onClick={handleAdd}></button>
